@@ -1,0 +1,104 @@
+{% extends "template.html" %}
+{% block content %}
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<form method="post">
+{{ form.hidden_tag() }}
+
+{% if form.question_english.label|length > 0 %}
+<p>
+<input type="hidden" id=audio_in value="{{ form.question_english.label }}"></input>
+<button class="btn-primary" id="audio_lady" type="button">Repeat audio</button>
+
+  <script>
+  function speak_meetup (text) {
+    var utter = new SpeechSynthesisUtterance();
+    utter.text = text;
+    utter.lang = "{{ form.question_lang.label }}";
+    speechSynthesis.speak(utter);
+  }
+
+  var textInput = document.getElementById('audio_in');
+  document.getElementById('audio_lady').addEventListener('click', function (event) {
+  speak_meetup(textInput.value);
+  })
+  speak_meetup(textInput.value);
+  speak_meetup("     ");
+
+  speak_meetup(textInput.value);
+
+  </script>
+
+{% else %}
+  {% if form.question %}
+    {{ form.question.label }}
+  {% endif %}
+{% endif %}
+
+
+{% if form.mc %}
+  {% if form.mc.errors %}
+    {% for error in form.mc.errors %}
+      <p class="error-messages">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <table>
+  {% for subfield in form.mc %}
+      <tr>
+          <td>{{ subfield(accesskey=loop.index) }} ({{ loop.index }}) {{ subfield.label }}</td>
+      </tr>
+  {% endfor %}
+  </table>
+
+
+
+  <script type='text/javascript'>
+   $(document).ready(function() { 
+     $('input[name=mc]').change(function(){
+          $('form').submit();
+     console.log("selected");
+     });
+
+    });
+  </script>
+
+  </form>
+
+  <p>
+    <i>Hint: Use Alt+Number to select</i>
+  </p>
+  
+{% endif %}
+<p>
+{% if form.written_response %}
+  {{ form.written_response.label }}
+  {% if form.written_response.errors %}
+    {% for error in form.written_response.errors %}
+    <p class="error-messages">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+  {{ form.written_response }}
+{{ form.submit(class="btn-primary") }}
+{% endif %}
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+{% include "game_actions.html" %}
+
+
+<!-- footer -->
+{% endblock %}

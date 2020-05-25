@@ -1,0 +1,147 @@
+/*
+HTML 5 Template Name: Basic 67
+File: Layout CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+body{margin:0; padding:0; font-size:13px; font-family:"PT Sans Caption", "Times New Roman", Times, serif; color:#2D2D2D; background-color:#760B36;}
+
+.clear:after{content:"."; display:block; height:0; clear:both; visibility:hidden; line-height:0;}
+.clear{display:block; width:100%; clear:both;}
+html[xmlns] .clear{display:block;}
+* html .clear{height:1%;}
+
+a{outline:none; text-decoration:none; text-decoration-color: #333333}
+
+code{font-weight:normal; font-style:normal; font-family:"PT Sans Caption", "Times New Roman", Times, serif;}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #FFFFFF; text-decoration-color: #333333}
+
+th {
+    background-color: #3071B5;
+    color: white;
+}
+
+#cssTable td 
+{
+    text-align:center; 
+    vertical-align:middle;
+
+    height: 50px; 
+    width:180px;
+}
+
+.leadertable
+{
+    text-align:center; 
+    vertical-align:middle;
+
+    height: 50px; 
+}
+
+#leadertable td 
+{
+    text-align:center; 
+    vertical-align:middle;
+
+    height: 50px; 
+}
+
+img{margin:0; padding:0; border:none; line-height:normal; vertical-align:middle;}
+.imgholder, .imgl, .imgr{padding:4px; border:1px solid #D6D6D6; text-align:center;}
+.imgl{float:left; margin:0 15px 15px 0; clear:left;}
+.imgr{float:right; margin:0 0 15px 15px; clear:right;}
+
+/*----------------------------------------------HTML 5 Overrides-------------------------------------*/
+
+address, article, aside, figcaption, figure, footer, header, nav, section{display:block; margin:20; padding:20;}
+
+q{display:block; padding:0 10px 8px 10px; color:#2D2D2D; background-color:#760B36; font-style:italic; line-height:normal;}
+q:before{content:'“ '; font-size:26px;}
+q:after{content:' „'; font-size:26px; line-height:0;}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+
+div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
+.row1x, .row1x a{color:#D2D2D2; background-color:#760B36;}
+.flashrow, .flashrow a{color:#000000; background-color:#FFFFFF; text-align: center;}
+.row2x{color:#2D2D2D; background-color:#D2D2D2;}
+.row2x a{color:#2D2D2D; background-color:#D2D2D2;}
+.row3x, .row3x a{color:#D2D2D2; background-color:#760B36;}
+
+/*----------------------------------------------Generalise-------------------------------------*/
+
+#header, #container, #footer{display:block; margin:0 auto; width:960px;}
+
+nav ul{margin:0; padding:0; list-style:none; display: flex;}
+
+h1, h2, h3, h4, h5, h6{margin:10; padding:10; font-size:20px; font-weight:normal; font-style:normal; line-height:normal;}
+
+/*----------------------------------------------Header-------------------------------------*/
+
+#header{}
+
+#header #hgroup{float:left; padding:10px 0;}
+#header #hgroup h1, #header #hgroup h2{}
+#header #hgroup h1{font-size:36px;}
+#header #hgroup h2{font-size:13px;}
+
+#header nav{float:right; padding:5px 0;}
+#header nav ul{margin-top:10px; display: flex;}
+#header nav li{display:inline; margin-right:15px; text-transform:uppercase;}
+#header nav li.last{margin-right:0;}
+
+/*----------------------------------------------Content Area-------------------------------------*/
+
+#container{padding:30px 0;}
+#container section{margin:0 0 30px 0;}
+#container section.last{margin:0;}
+#container .more{text-align:right; text-transform:uppercase; font-size:smaller; font-weight:bold;}
+
+/* ------Main Content-----*/
+
+#container #content{float:left; width:620px;}
+
+#container #content section article{}
+#container #content section article h2{text-transform:uppercase;}
+#container #content section article address{font-size:10px; font-style:normal;}
+#container #content section article time{font-size:10px;}
+
+#container #content #services{}
+#container #content #services ul{margin:0; padding:0; list-style:none; display: flex;}
+#container #content #services ul li{display:block; width:300px;}
+#container #content #services ul li.odd{float:left;}
+#container #content #services ul li.even{float:right;}
+#container #content #services ul li img{width:290px; height:100px; margin:0 0 15px 0; padding:4px; border:1px solid #666666;}
+
+/* ------Right Column-----*/
+
+#container #right_column{float:left; width:300px;}
+#container #right_column h2.title{margin-bottom:20px;}
+
+#container #right_column nav{display:block; width:100%; margin-bottom:30px;}
+#container #right_column nav ul{margin:0; padding:0; list-style:none;display: flex;}
+#container #right_column nav li{margin:0 0 3px 0; padding:0;}
+#container #right_column nav li.last{margin-bottom:0;}
+#container #right_column nav a{display:block; margin:0; padding:5px 10px 5px 20px; color:#666666; background:url("../images/orange_file.gif") no-repeat 10px center #FFFFFF; text-decoration:none; border-bottom:1px dotted #666666;}
+#container #right_column nav a:hover{color:#FF9900; background-color:#FFFFFF;}
+
+/*----------------------------------------------Footer-------------------------------------*/
+
+#footer{}
+#footer p{margin:0; padding:10px 0;}

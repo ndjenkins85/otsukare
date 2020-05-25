@@ -1,0 +1,129 @@
+{% block content %}
+
+<aside id="right_column">
+
+<div>
+
+{% if current_user.is_authenticated %}
+<small>Click links below to access exercises.<br>
+Total correct exercises displayed on the right</small>
+<table border=1 id="cssTable">
+  <tr>
+    <td>
+
+        {% if current_user.is_authenticated %}
+        <a href="learn_kana">
+<img src="{{ url_for('static',filename='images/gr.png') }}" width=20>
+
+        Learn Kana
+        </a>
+        {% else %}
+        Learn Kana
+        {% endif %}
+
+    </td>
+    <td style="width:180px">
+
+        {% if current_user.is_authenticated %}
+        <!--<a href="stats_kana">-->
+        Parts: {{ stats["kana_parts"] }}
+        <!--</a>-->
+        {% else %}
+        Parts: 50
+        {% endif %}
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+        {% if current_user.is_authenticated %}
+        <a href="learn_words">
+<img src="{{ url_for('static',filename='images/br.png') }}" width=20>
+
+        Learn Words
+        </a>
+        {% else %}
+        Learn Words
+        {% endif %}
+
+    </td>
+    <td style="width:180px">
+
+        {% if current_user.is_authenticated %}
+        <!--<a href="stats_words">-->
+        Seen: {{ stats["words_known"] }}
+        <!--</a>-->
+        {% else %}
+        Seen: 25
+        {% endif %}
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+        {% if current_user.is_authenticated %}
+        <a href="learn_sentences">
+<img src="{{ url_for('static',filename='images/yr.png') }}" width=20>
+        Learn Sentences
+        </a>
+        {% else %}
+        Learn Sentences
+        {% endif %}
+
+    </td>
+    <td style="width:180px">
+
+        {% if current_user.is_authenticated %}
+        <!--<a href="stats_needs">     -->
+        Sentences: {{ stats["needs_percent"] }}
+        <!--</a>     -->
+        {% else %}
+        Sentences: 4
+        {% endif %}
+
+    </td>
+  </tr>
+
+
+  <!--
+  <tr>
+    <td>
+
+        {% if current_user.is_authenticated %}
+        <a href="learn_key_phrases">
+        Learn Key Phrases
+        </a>
+        {% else %}
+        Learn Key Phrases
+        {% endif %}
+
+    </td>
+    <td style="width:100px">
+
+        {% if current_user.is_authenticated %}
+        <a href="stats_tasks">
+        Phrases: {{ stats["yen"]}}
+        </a>
+        {% else %}
+        Phrases: 3
+        {% endif %}
+
+    </td>
+  </tr>
+    -->
+
+</table>
+{% endif %}
+
+  </div>
+    </aside>
+
+
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+{% endblock %}

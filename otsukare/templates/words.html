@@ -1,0 +1,45 @@
+{% extends "template.html" %}
+{% block content %}
+<!-- content -->
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<h2>Words</h2>
+
+<table>
+<tr>
+	<th>English</th>
+	<th>Kana&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+	<th>Kanji</th>
+	<th>Romanji</th>
+	<th>Tags</th>
+	<th>Module</th>
+	<th>Lesson</th>	
+	<th>Delete</th>
+</tr>
+
+{% for row in words %}
+<tr>
+	<td>{{ row.english }}</td>
+	<td>{{ row.kana }}</td>
+	<td>{{ row.kanji }}</td>
+	<td>{{ row.romanji }}</td>
+	<td>{{ row.tags }}</td>
+	<td>{{ row.module }}</td>
+	<td>{{ row.lesson }}</td>
+	<td><a href="delete_word?word_id={{ row.id }}">Delete</a></td>
+
+</tr>
+{% endfor %}
+</table>
+
+</div>
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+{% endblock %}

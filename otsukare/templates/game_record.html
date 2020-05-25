@@ -1,0 +1,147 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+
+<form method="post">
+{{ form.hidden_tag() }}
+
+{% if form.question_english.label|length > 0 %}
+<i><small>
+This question is played as <b>{% if form.question_lang.label=="en" %}English{% else %}Japanese{% endif %}</b> audio - please ensure your speakers are on.<p>
+</small></i>
+<p>
+<input type="hidden" id=audio_in value="{{ form.question_english.label }}"></input>
+<button class="btn-primary" id="audio_lady" type="button">Repeat audio</button>
+
+  <script>
+  function speak_meetup (text) {
+    var utter = new SpeechSynthesisUtterance();
+    utter.text = text;
+    utter.rate = 0.60;
+    utter.lang = "{{ form.question_lang.label }}";
+    speechSynthesis.speak(utter);
+  }
+
+  var textInput = document.getElementById('audio_in');
+  document.getElementById('audio_lady').addEventListener('click', function (event) {
+  speak_meetup(textInput.value);
+  })
+  speak_meetup(textInput.value);
+  speak_meetup("     ");
+
+  speak_meetup(textInput.value);
+
+  </script>
+
+{% else %}
+  {% if form.question %}
+    {{ form.question.label }}
+  {% endif %}
+{% endif %}
+
+<hr>
+
+<i><small>Please think about the translation, then press record and speak your answer.<p>
+Please answer in <b>{% if form.answer_lang.label=="en-AU" %}English{% else %}Japanese{% endif %}</b>
+<p>
+Your speech will be transcribed; You can submit answer or rerecord.
+</i></small>
+
+
+    <div id="recordingslist"></div>
+    <div style="display: none;">
+        <div class="col-sm-6">
+            <h6>Transcript</h6>
+            <div id="results">
+                <span id="final_span" class="final"></span>
+                <span id="interim_span" class="interim"></span>
+            </div>
+
+            <div>
+                <div id="div_language">
+                    <select id="select_language" onchange="updateCountry()"></select>
+                    &nbsp;&nbsp;
+                    <select id="select_dialect"></select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="display: none;">
+        <h2>Log</h2>
+        <pre id="log"></pre>
+
+        <div id="info"></div>
+    </div>
+
+
+
+
+<div>
+    <textarea name="original" id="oritext" cols="62" rows="2" disabled></textarea>
+</div>
+{% if form.written_response %}
+  {% if form.written_response.errors %}
+    {% for error in form.written_response.errors %}
+    <p class="error-messages">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+  {{ form.written_response(size=60, readonly=True)}}
+<p>
+
+<span id="start_button"><img src="{{ url_for('static', filename='images/record.png') }}" alt="Record" width="50" height="50"></span>
+
+<span id="stop_button" style="display: none;"> <img src="{{ url_for('static', filename='images/stop.png') }}" alt="Stop" width="50" height="50">
+</span>
+
+{{ form.submit(class="btn-primary") }}
+{% endif %}
+</form>
+</p>
+
+<div id="record-status" style="display: none;">
+    <small>Recording...</small><br>
+    <img src="{{ url_for('static', filename='images/recording.gif') }}" alt="Recording in Progress">
+</div>
+
+
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
+<script src="{{ url_for('static',filename='js/recorderFunctions.js') }}"></script>
+<script src="{{ url_for('static',filename='kuroshiro.min.js') }}"></script>
+<script>
+
+var dialect = "{{ form.answer_lang.label }}"
+
+    kuroshiro.init(function(){
+    });
+
+    function convert(){
+      if (dialect=="ja-JP"){
+        var result = kuroshiro.convert(document.getElementById("oritext").value,{to:"romaji",mode:"spaced"});
+        document.getElementById("written_response").value = result;
+      }
+      else{
+        document.getElementById("written_response").value = document.getElementById("oritext").value;
+      }
+    }
+
+
+
+
+
+</script>
+<script src="{{ url_for('static', filename='js/webSpeech.js') }}"></script>   
+
+{% include "game_actions.html" %}
+
+<!-- footer -->
+{% endblock %}

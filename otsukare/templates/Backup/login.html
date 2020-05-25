@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Otsukare good work!</title>
+<meta charset="iso-8859-1">
+
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/layout.css') }}" type="text/css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans+Caption">
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <img src="{{ url_for('static',filename='images/logo.png') }}" width=220>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="login">Login</a></li>
+        <li class="last"><a href="#">Information</a></li>
+      </ul>
+    </nav>
+    <div class="clear"></div>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<h1>Please login</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+
+
+</div>
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+
+
+
+
+
+
+<div class="wrapper row3">
+  <footer id="footer">
+    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="info">Nick Jenkins njenkins30 for GaTech 6460 Educational Technologies</a></p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <div class="clear"></div>
+  </footer>
+</div>
+</body>
+</html>

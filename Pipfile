@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+psycopg2 = "*"
+pandas = "*"
+flask = "*"
+flask_sqlalchemy = "*"
+wtforms = "*"
+flask_login = "*"
+gunicorn = "*"
+flask_mail = "*"
+flask_wtf = "*"
+itsdangerous = "*"
+
+[requires]
+python_version = "3.6"

@@ -1,0 +1,128 @@
+english,kana,kanji,module,lesson
+one,いち,,Hirigana 1,1
+two,に,,Hirigana 1,1
+three,さん,,Hirigana 1,2
+four,よん,四,Hirigana 1,2
+six,ろく,,Hirigana 1,3
+seven,なな,,Hirigana 1,3
+good morning,おはよう,,Hirigana 1,4
+yes,はい,,Hirigana 1,4
+red,あか,,Hirigana 1,5
+white,しろ,,Hirigana 1,5
+blue,あお,,Hirigana 1,5
+night,よる,,Hirigana 2,1
+read,よむ,,Hirigana 2,1
+vegetables,やさい,,Hirigana 2,1
+alcohol,おさけ,,Hirigana 2,1
+wear,きる,,Hirigana 2,1
+drink,のむ,,Hirigana 2,1
+like,すき,,Hirigana 2,3
+dirty,きたない,,Hirigana 2,4
+want,ほしい,,Hirigana 2,4
+sweet,あまい,,Hirigana 2,4
+I,わたし,,Hirigana 2,5
+hello,こんにちは,,Hirigana 2,5
+goodbye,さようなら,,Hirigana 2,5
+cat,ねこ,,Hirigana 3,1
+dog,いぬ,,Hirigana 3,1
+bird,とり,,Hirigana 3,1
+eye,め,,Hirigana 3,2
+back,せなか,,Hirigana 3,2
+ear,みみ,,Hirigana 3,2
+winter,ふゆ,,Hirigana 3,3
+summer,なつ,,Hirigana 3,3
+cloudy,くもり,,Hirigana 3,4
+sunny,はれ,,Hirigana 3,4
+daytime,ひる,,Hirigana 3,4
+house,いえ,,Hirigana 3,4
+room,へや,,Hirigana 3,5
+outside,そと,,Hirigana 3,5
+bank,ぎんこう,,Hirigana 4,1
+wind,かぜ,,Hirigana 4,2
+map,ちず,,Hirigana 4,2
+fruit,くだもの,,Hirigana 4,4
+telephone,でんわ,,Hirigana 4,4
+bag,かばん,,Hirigana 4,4
+pencil,えんぴつ,,Hirigana 4,5
+today,きょう,今日,Hirigana 4,6
+tea,おちゃ,,Hirigana 4,6
+nine,きゅう,,Hirigana 4,6
+school,がっこう,,Hirigana 4,7
+ticket,きっぷ,,Hirigana 4,7
+person,じん,人,Intro,3
+nice to meet you,はじめまして,,Intro,3
+from,しゅっしん,,Intro,3
+china,ちゅうごく,中国,Intro,4
+japan,にほん,にほｎ,Intro,4
+book,ほん,本,Intro,4
+called,といいます,,Intro,5
+teacher,せんせい,先生,Intro 2,2
+student,がくせい,学生,Intro 2,2
+english,えいご,英語,Intro 2,4
+speak,はなせます,,Intro 2,4
+name,なまえ,名前,Intro 2,5
+what,なに,何,Intro 2,5
+of course,もちろん,,Intro 2,5
+fine,げんき,元気,Intro 2,5
+please,どうも,,Greetings,1
+sorry,ごめんなさい,,Greetings,1
+thank you,ありがとう,,Greetings,1
+goodbye,さようなら,,Greetings,2
+good night,おやすみなさい,,Greetings,2
+nice to meet you,よろしく,,Greetings,2
+sorry,すみません,,Greetings,2
+please,おねがいします,,Greetings,2
+water,みず,水,Food 1,1
+that,あれ,,Food 1,1
+that,それ,,Food 1,1
+this,これ,,Food 1,1
+please,ください,,Food 1,1
+eat,たべ,食べ,Food 1,1
+rice,ごはん,,Food 1,1
+which,どれ,,Food 1,2
+fish,さかな,,Food 1,3
+bread,パン,,Food 1,3
+meat,にく,,Food 1,3
+thank you for the meal,ごちそうさまでした,,Food 1,3
+lets eat,いただきます,,Food 1,3
+well then,じゃあ,,Food 1,3
+hour,じ,時,Time 1,2
+minute,ふん,分,Time 1,3
+now,いま,今,Time 1,3
+nine,く,九,Time 2,1
+seven,しち,七,Time 2,1
+eight,はち,八,Time 2,1
+ten,じゅう,十,Time 2,3
+half,はん,,Time 2,3
+half,はん,半,Time 2,3
+school,がっこう,学校,Time 3,1
+go,いき,行き,Time 3,1
+office,かいしゃ,,Time 3,1
+around,ごろ,,Time 3,1
+am,ごぜん,午前,Time 3,3
+pm,ごご,午後,Time 3,2
+wake up,おきます,,Time 3,2
+sleep,ねます,,Time 3,2
+midnight,ごぜんれい,,Time 3,2
+toilet,トイレ,,Home,1
+pet,ペット,,Home,1
+pool,プール,,Home,2
+table,テーブル,,Home,2
+bathtub,おふろ,,Home,3
+kitchen,だいどころ,,Home,3
+window,まど,,Home,4
+home,いえ,,Home,4
+yard,にわ,,Home,4
+how old,いくつ,,Home,6
+desk,つくえ,,Home,6
+chair,いす,,Home,6
+how many,いくつ,,Home,6
+live,すんでいます,,Intro 3,1
+foreigner,がいこくじん,外国人,Intro 3,2
+not right,ちがい,,Intro 3,2
+year,ねん,年,Intro 3,3
+middle school student,ちゅうがくせい,中学生,Intro 3,3
+high school student,こうこうせい,高校生,Intro 3,3
+College student,だいがくせい,大学生,Intro 3,3
+elementary school student,しょうがくせい,小学生,Intro 3,3
+programmer,プログラマー,,Other,1

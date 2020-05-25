@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Otsukare good work!</title>
+<meta charset="iso-8859-1">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/main.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/layout.css') }}" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans+Caption">
+
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<script src="{{ url_for('static', filename='js/bootstrap-editable.min.js') }}"></script>
+
+
+</head>
+<body>
+<div class="wrapper row1x">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" width=220></a>
+    </div>
+    <nav>
+        <ul>         
+          
+        <li><a href="play">{% if not current_user.is_authenticated %}How to {% endif %}Play</a></li>
+        {% if current_user.is_authenticated %}
+        <li>
+        Logged in as: <b><a href="play"><img src="{{ url_for('static',filename='images/' + current_user.icon + '.png') }}" height=15> {{ current_user.username }}</b></a></li>
+        <li class="last"><a href="logout">Logout</a></li>
+        {% else %}
+        <li><a href="login">Login</a></li>
+        <li><a href="signup">Signup</a></li>
+        {% endif %}
+
+
+      </ul>
+    </nav>
+
+    {% if current_user.admin %}
+    <nav>
+      <ul>
+        <li><a href="add_word">Add words</a></li>
+        <li><a href="view_words">View words</a></li>
+      </ul>
+    </nav>
+
+    {% endif %}
+    <div class="clear"></div>
+  </header>
+</div>
+
+<div class="flashrow"><b>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</b></div>
+
+{% block content %}
+{% endblock %}
+
+
+<div class="wrapper row3x">
+  <footer id="footer">
+    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - Nick Jenkins njenkins30 for GaTech 6460 Educational Technologies</p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <div class="clear"></div>
+  </footer>
+</div>
+</body>
+</html>

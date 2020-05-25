@@ -1,0 +1,48 @@
+{% extends "template.html" %}
+{% block content %}
+<!-- content -->
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+
+<b>Otsukare</b> (good work) is a language learning game designed to help you become more confident speaking in Japanese. 
+<p> You play the role of Kimio, a hard working character that must repay his families debts! Join Kimio as you search for work, complete tasks and reunite with family members.
+<p>
+
+This app is designed to be a complement to the popular language learning app <a href="https://www.duolingo.com/">Duolingo</a>. We encourage you to practice there and fight for freedom here! This app is designed to be spoken/comprehension based and put you in real world situations helping you to understand:<p>
+
+<ul>
+<li>Meeting people
+<li>Times and dates
+<li>Directions and navigation
+<li>Paying for items
+</ul>
+
+Our hope is that you become more comfortable speaking Japanese, and help Kimio rescue his family!
+    </div>
+
+
+<aside id="right_column">
+
+<div style="width: 400px;
+    align-items: center;
+    justify-content: center;">
+<font size=3>
+<img src="{{ url_for('static',filename='images/gr.png') }}" width=30>&emsp;Run errands<p>
+<img src="{{ url_for('static',filename='images/br.png') }}" width=30>&emsp;Save Kimio's family<p>
+<img src="{{ url_for('static',filename='images/yr.png') }}" width=30>&emsp;Learn Japanese<p>
+</font>
+
+  </div>
+    </aside>
+
+
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+{% endblock %}

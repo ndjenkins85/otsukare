@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+{% block content %}
+<!-- content -->
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<b>Otsukare</b> (good work) is a free language learning game designed to help English speakers practice and become more confident in Japanese.<p>
+
+This website is designed to complement the popular language learning app <b><a href="https://www.duolingo.com/">Duolingo</a></b>. We encourage you to practice exercises both here and on Duolingo. This app includes topics and special technology beyond what Duolingo currently offers, including..
+<ul>
+	<li> More <b>spoken</b> and comprehension content
+	<li> More focus on <b>vocabulary</b> memorisation
+	<li> More sentences through <b>random generation</b>, including handling money, asking for things (needs, wants, usage)
+	<li> Learning <b>conversational elements</b> like umms, ahhs, acknowledgements and asking to repeat
+	<li> Specialised spaced repetition learning system that focuses your attention on mistakes made by <b>yourself and other users</b>
+</ul>
+
+
+<font size=2>
+<img src="{{ url_for('static',filename='images/gr.png') }}" width=20>&emsp;Learn the basic Kana<br>
+<img src="{{ url_for('static',filename='images/br.png') }}" width=20>&emsp;Learn vocabulary<br>
+<img src="{{ url_for('static',filename='images/yr.png') }}" width=20>&emsp;Use vocabulary in sentences<br>
+</font>
+
+</div>
+
+<aside id="right_column">
+
+<div>
+
+{% if current_user.is_authenticated %}
+<h3>&emsp;&emsp;&emsp;Leaderboard</h3>
+
+
+{{ table|safe }}
+{% endif %}
+
+</div>
+
+    </aside>
+
+
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+{% endblock %}

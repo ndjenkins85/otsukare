@@ -1,0 +1,43 @@
+{% extends "template.html" %}
+{% block content %}
+<!-- content -->
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<h2>Leaderboard</h2>
+
+<table>
+<tr>
+	<td></td>
+	<th>Username</th>
+	<th>Yen earnt</th>
+	{% if current_user.admin %}
+	<th>Delete</td>
+	{% endif %}
+
+
+</tr>
+
+{% for row in leaders %}
+<tr>
+	<td><img src="{{ url_for('static',filename='images/' + row.icon + '.png') }}" height=15></td>
+	<td>{{ row.username }}</td>
+	<td>￥{{ row.yen }}</td>
+	{% if current_user.admin and row.admin==False %}
+	<td><a href="/delete_user?username={{row.username}}">Delete user</a></td>
+	{% endif %}
+
+</tr>
+{% endfor %}
+</table>
+
+</div>
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+{% endblock %}

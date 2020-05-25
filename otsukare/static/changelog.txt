@@ -1,0 +1,56 @@
+"Add database and add words" 
+"Can now add and view words in the database" 
+"signup and add fixed" 
+"na" 
+"added training" 
+"Train and earn yen by getting answers correct" 
+"ready" 
+"previous failed" 
+"Added email confirmation routine" 
+"Proper signup proceedure, with username, email and password unique checking, and sending email to ask for confirmation. Passwords are stored encrypted." 
+"fix upload" 
+"fix upload" 
+"set pipfile" 
+"" 
+2017-20-10_1206 AM  
+"error in upload" 
+"" 
+2017-20-10_1217 AM  
+"remove pycache" 
+"" 
+2017-20-10_1245 AM  
+"directory issue" 
+"" 
+2017-20-10_1246 AM  
+"rename error in proc" 
+"" 
+2017-20-10_1249 AM  
+"more weird folder errors" 
+"" 
+2017-21-10_0643 PM  
+"Add full login capabilities" 
+"" 
+2017-27-10_0706 PM  
+"Added gameplay design" 
+"Added gameplay design, various sections that help users learn Japanese" 
+2017-29-10_1155 AM  
+"basic kana test" 
+"kana test" 
+2017-09-11_1107 PM  
+"Add recording test" 
+"add record test" 
+2017-09-11_1110 PM  
+"update recorder" 
+"" 
+2017-10-11_0356 PM  
+"Added base speech recognition for Needs" 
+"" 
+2017-18-11_0119 PM  
+"base upload" 
+"Upload basic requirements for project" 
+2017-18-11_0318 PM  
+"fix speech input" 
+"" 
+2017-02-12_0518 PM  
+"Fix navigation etc" 
+"Easier to start with kana. notifications on signup. Leaderboard made login only" 

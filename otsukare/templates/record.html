@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <script src="{{ url_for('static', filename='js/bootstrap-editable.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/recorderFunctions.js') }}"></script>
+    </head>
+
+    <body>
+    <div class="row text-center">
+        <h1>Record </h1>
+        <small>You last said: {{ posted }} </small><p>
+
+        <div id="start_button"><img src="{{ url_for('static', filename='images/record.png') }}" alt="Record" width="50" height="50"></div>
+        <div id="stop_button" style="display: none;"><img src="{{ url_for('static', filename='images/stop.png') }}" alt="Stop" width="50" height="50">
+        </div>
+
+        <div id="record-status" style="display: none;">
+            <small>Recording...</small><br>
+            <img src="{{ url_for('static', filename='images/recording.gif') }}" alt="Recording in Progress">
+        </div>
+        <div id="recordingslist"></div>
+    </div>
+
+    <hr>
+
+    <div class="row text-center" style="display: none;">
+        <div class="col-sm-6">
+            <h6>Transcript</h6>
+            <div id="results">
+                <span id="final_span" class="final"></span>
+                <span id="interim_span" class="interim"></span>
+            </div>
+
+            <div>
+                <div id="div_language">
+                    <select id="select_language" onchange="updateCountry()"></select>
+                    &nbsp;&nbsp;
+                    <select id="select_dialect"></select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row text-center" style="display: none;">
+        <h2>Log</h2>
+        <pre id="log"></pre>
+
+        <div id="info"></div>
+    </div>
+
+    <form method = "post">
+    <div class="row text-center">
+        <textarea name="original" id="oritext" cols="60" rows="2"></textarea>
+    </div>
+
+    <div class="row text-center">
+        <textarea name="output" id="output" cols="60" rows="2"></textarea>
+    </div>
+
+
+    <div class="row text-center">
+        <input type="button" value="Rerecord" onClick="window.location.reload()">
+        <input type = "submit" value="Submit">
+        </form>
+    </div>
+
+</div>
+<script src="{{ url_for('static',filename='kuroshiro.min.js') }}"></script>
+<script>
+    kuroshiro.init(function(){
+        document.getElementById("init").setAttribute("style","display:none");
+        document.getElementById("demo").setAttribute("style","display:block");
+    });
+
+    function convert(){
+        var result = kuroshiro.convert(document.getElementById("oritext").value,{to:"romaji",mode:"spaced"});
+        document.getElementById("output").innerHTML = result;
+    }
+</script>
+<script src="{{ url_for('static', filename='js/webSpeech.js') }}"></script>    
+</body>
+</html>

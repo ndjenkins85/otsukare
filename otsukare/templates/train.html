@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Otsukare good work!</title>
+<meta charset="iso-8859-1">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='styles/layout.css') }}" type="text/css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans+Caption">
+</head>
+<body>
+<div class="wrapper row1x">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" width=220></a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="login">Login</a></li>
+        <li><a href="signup">Signup</a></li>
+        <li><a href="train">Train</a></li>
+        <li><a href="add_word">Add word</a></li>
+        <li><a href="words">View words</a></li>
+        <li class="last"><a href="info">Information</a></li>
+      </ul>
+    </nav>
+    <div class="clear"></div>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2x">
+  <div id="container">
+    <!-- content body -->
+    <div id="content">
+      <!-- section 1 -->
+
+<h1>Training</h1>
+{{ message }}<p>
+
+<p>{{ result }}
+<p>
+
+<div id="cookie_value">
+<span></span>
+</div>
+
+<script>
+$("#cookie_value span").text(document.cookie);
+</script>
+
+
+{{ quiz }}
+{% from "_form_helpers.html" import render_field %}
+<form method=post>
+  <dl>
+<p>
+    {{ render_field(form.answer) }}
+    <input type="hidden" value="{{ answer }}" name="real_answer">
+
+  </dl>
+  <p><input type=submit value=Submit>
+</form>
+
+
+</div>
+    <!-- / content body -->
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- footer -->
+
+
+
+
+
+
+<div class="wrapper row3x">
+  <footer id="footer">
+    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="info">Nick Jenkins njenkins30 for GaTech 6460 Educational Technologies</a></p>
+    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <div class="clear"></div>
+  </footer>
+</div>
+</body>
+</html>
