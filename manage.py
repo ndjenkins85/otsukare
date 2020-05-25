@@ -2,25 +2,23 @@
 import os
 from datetime import datetime
 import pandas as pd
-
 from flask_script import Manager
 from otsukare import app
-
 from otsukare.models import *
 from otsukare.analysis import sql_table_to_excel, romanji_from_kana
 
-
 manager = Manager(app)
+
 
 @manager.command
 def create_db():
-    """Creates the db tables."""
     db.create_all()
+
 
 @manager.command
 def drop_db():
-    """Drops the db tables."""
     db.drop_all()
+
 
 @manager.command
 def add_db():
@@ -70,10 +68,6 @@ def add_db():
 
     db.session.commit()
 
-
-
-
-
     df = pd.read_excel("data/Task_Master.xlsx")
     for index, row in df.iterrows():
         new_task = Task_Master(
@@ -85,32 +79,15 @@ def add_db():
 
     admin = Users("Bluemania",
                         "nick.jenkins@evolveresearch.com.au",
-                        "shihad", admin=True, yen=200, 
+                        "password", admin=True, yen=200, 
                         confirmed=True, confirmed_on=datetime.now())     
     db.session.add(admin)
     monkey = Users("Skyver",
                         "damnthatswack@hotmail.com",
-                        "shihad", admin=False, yen=50, 
+                        "password", admin=False, yen=50, 
                         confirmed=True, confirmed_on=datetime.now())     
     db.session.add(monkey)
     db.session.commit()
-
-    # df = pd.read_excel("data/Tasks.xlsx")
-    # for index, row in df.iterrows():
-    #     new_task = Tasks(
-    #         user_id = row["user_id"],
-    #         task_id = row["task_id"],
-    #         answer = int(row["answer"]),
-    #         place1 = int(row["place1"]),
-    #         place2 = int(row["place2"]),
-    #         place3 = int(row["place3"]),
-    #         place4 = int(row["place4"]),
-    #         place5 = int(row["place5"]),
-    #         response = int(row["response"]),
-    #         status = int(row["status"]))
-    #     db.session.add(new_task)
-    # db.session.commit()
-
 
     df = pd.read_csv("data/modules.csv")
     for term in df["modules"].tolist():
@@ -127,6 +104,7 @@ def write_words():
 @manager.command
 def test():
     sql_table_to_excel("Kana_Known", db)
+
 
 if __name__ == '__main__':
     manager.run()

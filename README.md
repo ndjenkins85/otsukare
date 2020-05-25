@@ -43,9 +43,24 @@ python otsukare.py
 6. Visit local website http://localhost:5000/
 
 
-# TODO List
+## Deployment
 
-- [] Scrub secrets found in manage.py
-- [] Delete unneeded files, cleanup directories
+Once updates have been made to the scripts, can redeploy the web service on Heroku using the following. This should be done when ready to deploy after a git master branch update.
+``` bash
+git push heroku master
+```
+
+Read logs to determine if deployment was successful. Following are some useful commands to verify;
+
+``` bash
+heroku open
+heroku logs --tail
+```
+
+## TODO List
+
+- [X] Scrub secrets found in manage.py
+- [] Delete unneeded files, cleanup directories. basic pep8 checks.
+- [] Change system towards development and production config, work towards one step deploy
 
 
