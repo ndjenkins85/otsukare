@@ -15,6 +15,7 @@ flask_wtf = "*"
 itsdangerous = "*"
 email_validator = "*"
 Flask-Script = "*"
+xlrd = "*"
 
 [requires]
 python_version = "3.7"

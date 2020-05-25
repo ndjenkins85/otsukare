@@ -27,11 +27,12 @@ pipenv install
 /Applications/Postgres.app/Contents/Versions/12/bin/psql -c "create database otsukare"
 ```
 
-4. Populate otsukare database
+4. Populate postgres:otsukare database
 
 ``` bash
 pipenv shell
 python manage.py create_db
+python manage.py add_db
 ```
 
 5. Run otsukare webserver (from within pipenv shell)
@@ -40,4 +41,11 @@ python otsukare.py
 ```
 
 6. Visit local website http://localhost:5000/
+
+
+# TODO List
+
+- [] Scrub secrets found in manage.py
+- [] Delete unneeded files, cleanup directories
+
 
