@@ -28,7 +28,6 @@ app.config.from_object("otsukare.config.BaseConfig")
 mail = Mail(app)
 db = SQLAlchemy(app)
 
-import otsukare.views
 
 # Program version and changelog. __version__ is used in setup.py
 # Poetry attaches to this version via poetry-version-plugin

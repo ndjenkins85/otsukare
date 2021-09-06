@@ -327,7 +327,7 @@ def submit_task(current_user, answer_id_list=None, task_type=None):
         if known:
             known.tokens += 1
             known.level += 1
-            last_practiced = datetime.now()
+            datetime.now()
         else:
             if task_type == "Kana":
                 new_known = Kana_Known(
@@ -352,7 +352,7 @@ def submit_task(current_user, answer_id_list=None, task_type=None):
         if known:
             known.tokens = known.tokens - 1 if known.tokens > 0 else 0
             known.level = 0
-            last_practiced = datetime.now()
+            datetime.now()
         else:
             if task_type == "Kana":
                 new_known = Kana_Known(

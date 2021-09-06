@@ -22,4 +22,3 @@
 
 def test_fail() -> None:
     """It tests nothing useful."""
-    pass

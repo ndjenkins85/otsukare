@@ -19,13 +19,11 @@
 # DEALINGS IN THE SOFTWARE.
 
 # coding: utf-8
-import json
-import os
 import random
 from datetime import datetime
 
 import pandas as pd
-from flask import Flask, flash, jsonify, make_response, redirect, render_template, request, session, url_for
+from flask import flash, redirect, render_template, request, session, url_for
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 from otsukare import app

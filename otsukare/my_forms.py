@@ -19,10 +19,10 @@
 # DEALINGS IN THE SOFTWARE.
 
 from flask_wtf import Form
-from wtforms import HiddenField, PasswordField, RadioField, SelectField, StringField, SubmitField, TextAreaField
+from wtforms import PasswordField, RadioField, SelectField, StringField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, InputRequired, Length
 
-from otsukare.models import Users, db
+from otsukare.models import Users
 
 
 class Signup_Form(Form):
