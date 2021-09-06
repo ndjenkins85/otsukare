@@ -18,16 +18,28 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
+
 from flask import Flask
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config.from_object("otsukare.config.BaseConfig")
 
+def create_app() -> Flask:
+    """Creates the primary Flask app with config.
+
+    Returns:
+        Flask: returns flask app.
+    """
+    app = Flask(__name__)
+    app.config.from_object("otsukare.config.BaseConfig")
+    return app
+
+
+app = create_app()
 mail = Mail(app)
 db = SQLAlchemy(app)
 
+import otsukare.views  # noqa: E402
 
 # Program version and changelog. __version__ is used in setup.py
 # Poetry attaches to this version via poetry-version-plugin
