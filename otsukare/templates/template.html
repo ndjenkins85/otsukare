@@ -28,8 +28,8 @@
       <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" width=220></a>
     </div>
     <nav>
-        <ul>         
-          
+        <ul>
+
         <li><a href="play">{% if not current_user.is_authenticated %}How to {% endif %}Play</a></li>
         {% if current_user.is_authenticated %}
         <li>

@@ -19,7 +19,7 @@ a {
         }
     }
 
-.h1, .h2, .h3, .h4, .h5, 
+.h1, .h2, .h3, .h4, .h5,
 h1, h2, h3, h4, h5 {
     font-weight: 200;
     }
@@ -139,7 +139,7 @@ h2 small {
     box-shadow: none;
     opacity: .65;
     }
-    
+
 input.form-control {
     border-radius: 0;
     padding: 20px 15px;
@@ -157,8 +157,8 @@ input.form-control {
     letter-spacing: 1px;
     }
 
-.navbar-default a, 
-.navbar-default .navbar-brand, 
+.navbar-default a,
+.navbar-default .navbar-brand,
 .navbar-default .navbar-nav>li>a {
     color: $grey;
     &:hover {
@@ -219,7 +219,7 @@ nav.navbar-home.navbar-default {
         text-shadow: 0 1px 3px $grey;
         a.btn.btn-default.btn-lg {
             background-color: rgba(255,255,255,0.8);
-            }   
+            }
         }
     h2.featurette-heading {
         margin-top: 0;
@@ -230,8 +230,8 @@ nav.navbar-home.navbar-default {
     }
 
 /* User profile */
-#recordingslist audio { 
-    display: block; margin-bottom: 10px; 
+#recordingslist audio {
+    display: block; margin-bottom: 10px;
     }
 
 #info {
