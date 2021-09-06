@@ -1,10 +1,33 @@
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+# Copyright © 2021 by Nick Jenkins. All rights reserved
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+
 import random
+from datetime import datetime
+
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from otsukare import db
 
+
 class Users(db.Model):
-    __tablename__ = 'Users'
+    __tablename__ = "Users"
     id = db.Column(db.INT, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
@@ -17,10 +40,10 @@ class Users(db.Model):
 
     yen = db.Column(db.INT)
     icon = db.Column(db.String(10))
-    
-    def __init__(self, username, email, password, 
-                admin=False, confirmed=False, confirmed_on=None,
-                yen=0, xp=0, icon=None):
+
+    def __init__(
+        self, username, email, password, admin=False, confirmed=False, confirmed_on=None, yen=0, xp=0, icon=None
+    ):
         self.username = username.title()
         self.email = email.lower()
         self.set_password(password)
@@ -29,10 +52,9 @@ class Users(db.Model):
         self.registered_on = datetime.now()
         self.confirmed = confirmed
         self.confirmed_on = confirmed_on
-        
-        self.yen = yen
-        self.icon = random.choice(["br","gr","lr","pr","rr","yr"])
 
+        self.yen = yen
+        self.icon = random.choice(["br", "gr", "lr", "pr", "rr", "yr"])
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -56,20 +78,20 @@ class Users(db.Model):
         return str(self.id)
 
     def __repr__(self):
-        return '<User %r>' % (self.username)
+        return "<User %r>" % (self.username)
 
 
 class Modules(db.Model):
-    __tablename__ = 'Modules'
+    __tablename__ = "Modules"
     index = db.Column(db.Integer, primary_key=True)
     modules = db.Column(db.String(100), unique=True)
-    
+
     def __init__(self, modules=None):
         self.modules = modules
 
-        
+
 class Words(db.Model):
-    __tablename__ = 'Words'
+    __tablename__ = "Words"
     id = db.Column(db.INT, primary_key=True)
     english = db.Column(db.String(100), nullable=False)
     kana = db.Column(db.String(100), nullable=False)
@@ -80,9 +102,19 @@ class Words(db.Model):
     lesson = db.Column(db.INT, nullable=False)
     user = db.Column(db.String(100))
     added_on = db.Column(db.DateTime, nullable=True)
-    
-    def __init__(self, english=None, kana=None, kanji=None, romanji=romanji, tags=None,
-        module=None, lesson=None, user=None, added_on=datetime.now()):
+
+    def __init__(
+        self,
+        english=None,
+        kana=None,
+        kanji=None,
+        romanji=romanji,
+        tags=None,
+        module=None,
+        lesson=None,
+        user=None,
+        added_on=datetime.now(),
+    ):
         self.english = english
         self.kana = kana
         self.kanji = kanji
@@ -91,20 +123,19 @@ class Words(db.Model):
         self.module = module
         self.lesson = lesson
         self.user = user
-        self.added_on = added_on        
+        self.added_on = added_on
 
 
 class Words_Known(db.Model):
-    __tablename__ = 'Words_Known'
+    __tablename__ = "Words_Known"
     id = db.Column(db.INT, primary_key=True)
-    user_id = db.Column(db.INT, db.ForeignKey('Users.id'))
-    word_id = db.Column(db.INT, db.ForeignKey('Words.id'))
+    user_id = db.Column(db.INT, db.ForeignKey("Users.id"))
+    word_id = db.Column(db.INT, db.ForeignKey("Words.id"))
     level = db.Column(db.INT, nullable=False)
     last_practiced = db.Column(db.DateTime, nullable=True)
     tokens = db.Column(db.INT)
 
-    def __init__(self, user_id=None, word_id=None, 
-        level=0, last_practiced=datetime.now(), tokens=None):
+    def __init__(self, user_id=None, word_id=None, level=0, last_practiced=datetime.now(), tokens=None):
         self.user_id = user_id
         self.word_id = word_id
         self.level = level
@@ -113,7 +144,7 @@ class Words_Known(db.Model):
 
 
 class Kana(db.Model):
-    __tablename__ = 'Kana'
+    __tablename__ = "Kana"
     id = db.Column(db.INT, primary_key=True)
     type = db.Column(db.String(100), nullable=False)
     kana = db.Column(db.String(100), nullable=False)
@@ -128,16 +159,15 @@ class Kana(db.Model):
 
 
 class Kana_Known(db.Model):
-    __tablename__ = 'Kana_Known'
+    __tablename__ = "Kana_Known"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.INT, db.ForeignKey('Users.id'))
-    kana_id = db.Column(db.INT, db.ForeignKey('Kana.id'))
+    user_id = db.Column(db.INT, db.ForeignKey("Users.id"))
+    kana_id = db.Column(db.INT, db.ForeignKey("Kana.id"))
     level = db.Column(db.INT, nullable=False)
     last_practiced = db.Column(db.DateTime, nullable=True)
     tokens = db.Column(db.INT)
-    
-    def __init__(self, user_id=None, kana_id=None,  
-                 level=0, last_practiced=datetime.now(), tokens=None):
+
+    def __init__(self, user_id=None, kana_id=None, level=0, last_practiced=datetime.now(), tokens=None):
         self.user_id = user_id
         self.kana_id = kana_id
         self.level = level
@@ -146,7 +176,7 @@ class Kana_Known(db.Model):
 
 
 class Task_Master(db.Model):
-    __tablename__ = 'Task_Master'
+    __tablename__ = "Task_Master"
     id = db.Column(db.Integer, primary_key=True)
     task_type = db.Column(db.String(100), nullable=False)
     input = db.Column(db.String(100), nullable=False)
@@ -154,9 +184,8 @@ class Task_Master(db.Model):
     output = db.Column(db.String(100), nullable=False)
     out_ja = db.Column(db.String(100), nullable=False)
     difficulty = db.Column(db.INT, nullable=False)
-    
-    def __init__(self, task_type = None, 
-        input = None, in_ja = None, output = None, out_ja = None, difficulty = None):
+
+    def __init__(self, task_type=None, input=None, in_ja=None, output=None, out_ja=None, difficulty=None):
         self.task_type = task_type
         self.input = input
         self.in_ja = in_ja
@@ -166,10 +195,10 @@ class Task_Master(db.Model):
 
 
 class Tasks(db.Model):
-    __tablename__ = 'Tasks'
+    __tablename__ = "Tasks"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.INT, db.ForeignKey('Users.id'))
-    task_id = db.Column(db.INT, db.ForeignKey('Task_Master.id'))
+    user_id = db.Column(db.INT, db.ForeignKey("Users.id"))
+    task_id = db.Column(db.INT, db.ForeignKey("Task_Master.id"))
     answer = db.Column(db.String(200), nullable=False)
     place1 = db.Column(db.String(200))
     place2 = db.Column(db.String(200))
@@ -181,10 +210,22 @@ class Tasks(db.Model):
     status = db.Column(db.INT, nullable=False)
     task_made = db.Column(db.DateTime, nullable=False)
     task_ended = db.Column(db.DateTime)
-    
-    def __init__(self, user_id = None, task_id = None, answer = None,
-        place1 = None, place2 = None, place3 = None, place4 = None, place5 = None,
-        response = None, status = -1, task_made = datetime.now(), task_ended = None):
+
+    def __init__(
+        self,
+        user_id=None,
+        task_id=None,
+        answer=None,
+        place1=None,
+        place2=None,
+        place3=None,
+        place4=None,
+        place5=None,
+        response=None,
+        status=-1,
+        task_made=datetime.now(),
+        task_ended=None,
+    ):
 
         self.user_id = user_id
         self.task_id = task_id
@@ -203,7 +244,7 @@ class Tasks(db.Model):
 
 
 class Needs(db.Model):
-    __tablename__ = 'Needs'
+    __tablename__ = "Needs"
     id = db.Column(db.INT, primary_key=True)
     english = db.Column(db.String(500), nullable=False)
     japanese = db.Column(db.String(500), nullable=False)
@@ -217,18 +258,26 @@ class Needs(db.Model):
 
 
 class Needs_Known(db.Model):
-    __tablename__ = 'Needs_Known'
+    __tablename__ = "Needs_Known"
     id = db.Column(db.INT, primary_key=True)
-    user_id = db.Column(db.INT, db.ForeignKey('Users.id'))
-    need_id = db.Column(db.INT, db.ForeignKey('Needs.id'))
+    user_id = db.Column(db.INT, db.ForeignKey("Users.id"))
+    need_id = db.Column(db.INT, db.ForeignKey("Needs.id"))
     english = db.Column(db.String(500), nullable=False)
     japanese = db.Column(db.String(500), nullable=False)
     level = db.Column(db.INT, nullable=False)
     last_practiced = db.Column(db.DateTime, nullable=True)
     tokens = db.Column(db.INT)
 
-    def __init__(self, user_id=None, need_id=None, english=None, japanese=None,
-        level=0, last_practiced=datetime.now(), tokens=None):
+    def __init__(
+        self,
+        user_id=None,
+        need_id=None,
+        english=None,
+        japanese=None,
+        level=0,
+        last_practiced=datetime.now(),
+        tokens=None,
+    ):
         self.user_id = user_id
         self.need_id = need_id
         self.english = english
@@ -236,6 +285,3 @@ class Needs_Known(db.Model):
         self.level = level
         self.last_practiced = last_practiced
         self.tokens = tokens
-
-
-

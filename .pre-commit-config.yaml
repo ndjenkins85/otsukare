@@ -1,0 +1,40 @@
+# All pre-commit tools will automatically make changes to code
+# However, these should non-block the commit process
+# This is why code checks like flake8 are not included
+# Use nox before pushing code
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.0.1
+  hooks: # Basic tools to check format of yaml, end of line and trailing whitespace ftw
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+- repo: https://github.com/psf/black
+  rev: 19.3b0
+  hooks: # Black code formatting
+  - id: black
+- repo: https://github.com/roy-ht/pre-commit-jupyter
+  rev: v1.2.1
+  hooks: # Cleans up jupyter notebooks before committing
+  - id: jupyter-notebook-cleanup
+    args:
+      - --pin-patterns
+      - "[pin];[donotremove]"
+- repo: https://github.com/PyCQA/isort
+  rev: "5.9.2"
+  hooks: # Sorts imports
+  - id: isort
+    additional_dependencies: [toml]
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.1.10
+  hooks: # Adds LICENSE notice to top of all python files, must have a LICENSE file
+  - id: insert-license
+    name: Add license for all python files
+    exclude: ^\.github/.*$
+    types: [python]
+    args:
+      - --comment-style
+      - "|#|"
+      - --license-filepath
+      - LICENSE
+      - --fuzzy-match-generates-todo

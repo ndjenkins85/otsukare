@@ -185,6 +185,6 @@ $('#stop_button').click(function() {
   $('#start_button').show();
   $('#record-status').hide();
   $ ('#submit-audio').prop('disabled',false);
-  stopRecording(this); 
+  stopRecording(this);
   startButton(event);
 });

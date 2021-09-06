@@ -90,5 +90,3 @@
   window.Recorder = Recorder;
 
 })(window);
-
-

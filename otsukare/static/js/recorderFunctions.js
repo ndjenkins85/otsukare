@@ -9,7 +9,7 @@ function startUserMedia(stream) {
   // Uncomment if you want the audio to feedback directly
   // input.connect(audio_context.destination);
   // __log('Input connected to audio context destination.');
-  
+
   recorder = new Recorder(input);
   __log('Recorder initialised.');
 }
@@ -24,10 +24,10 @@ function stopRecording(button) {
   button.disabled = true;
   button.previousElementSibling.disabled = false;
   __log('Stopped recording.');
-  
+
   // create WAV download link using audio data blob
   createDownloadLink();
-  
+
   recorder.clear();
 }
 function createDownloadLink() {
@@ -36,7 +36,7 @@ function createDownloadLink() {
     var span = document.createElement('span');
     var au = document.createElement('audio');
     var hf = document.createElement('a');
-    
+
     au.controls = true;
     au.src = url;
     hf.href = url;
@@ -53,7 +53,7 @@ function createDownloadLink() {
 
     $('#submit-audio').click(function() {
       var myTranscript = $( '#oritext' ).value();
-    
+
       form.append('title', $('#recording-title').val());
       form.append('transcript', myTranscript);
       $.ajax({
@@ -77,14 +77,14 @@ window.onload = function init() {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
     window.URL = window.URL || window.webkitURL;
-    
+
     audio_context = new AudioContext;
     __log('Audio context set up.');
     __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
   } catch (e) {
     alert('No web audio support in this browser!');
   }
-  
+
   navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
     __log('No live audio input: ' + e);
   });

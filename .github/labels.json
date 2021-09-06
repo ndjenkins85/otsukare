@@ -1,0 +1,42 @@
+[
+  {
+    "name": "feature",
+    "color": "#5319E7",
+    "description": "adding functionality to project"
+  },
+  {
+    "name": "bug",
+    "color": "#B60205",
+    "description": "something isn't right"
+  },
+  {
+    "name": "docs",
+    "color": "#0052CC",
+    "description": "documentation improvements"
+  },
+  {
+    "name": "infra",
+    "color": "#FBCA04",
+    "description": "CI/CD and tooling improvements"
+  },
+  {
+    "name": "hotfix",
+    "color": "#FF69B4",
+    "description": "for fixing broken releases only"
+  },
+  {
+    "name": "experiment",
+    "color": "#09E614",
+    "description": "for testing and experiments, not to be merged (formalize as feature)"
+  },
+  {
+    "name": "help_wanted",
+    "color": "#D4C5F9",
+    "description": "open to development support"
+  },
+  {
+    "name": "discussion",
+    "color": "#C2E0C6",
+    "description": "open discussion on topic"
+  }
+]
