@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Reference &mdash; Otsukare  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="License" href="license.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Otsukare
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.analysis">otsukare.analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.config">otsukare.config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.email">otsukare.email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.make_token">otsukare.make_token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.models">otsukare.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.my_forms">otsukare.my_forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-otsukare.views">otsukare.views</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Otsukare</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/reference.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#module-otsukare.analysis" id="id1">otsukare.analysis</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.config" id="id2">otsukare.config</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.email" id="id3">otsukare.email</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.make_token" id="id4">otsukare.make_token</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.models" id="id5">otsukare.models</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.my_forms" id="id6">otsukare.my_forms</a></p></li>
+<li><p><a class="reference internal" href="#module-otsukare.views" id="id7">otsukare.views</a></p></li>
+</ul>
+</div>
+<div class="section" id="module-otsukare.analysis">
+<span id="otsukare-analysis"></span><h2>otsukare.analysis<a class="headerlink" href="#module-otsukare.analysis" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-otsukare.config">
+<span id="otsukare-config"></span><h2>otsukare.config<a class="headerlink" href="#module-otsukare.config" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.config.BaseConfig">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.config.</span></span><span class="sig-name descname"><span class="pre">BaseConfig</span></span><a class="headerlink" href="#otsukare.config.BaseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base configuration.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-otsukare.email">
+<span id="otsukare-email"></span><h2>otsukare.email<a class="headerlink" href="#module-otsukare.email" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-otsukare.make_token">
+<span id="otsukare-make-token"></span><h2>otsukare.make_token<a class="headerlink" href="#module-otsukare.make_token" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-otsukare.models">
+<span id="otsukare-models"></span><h2>otsukare.models<a class="headerlink" href="#module-otsukare.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Kana">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Kana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kana</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">romanji</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Kana" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Kana_Known">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Kana_Known</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kana_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_practiced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">9,</span> <span class="pre">6,</span> <span class="pre">22,</span> <span class="pre">30,</span> <span class="pre">15,</span> <span class="pre">633018)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Kana_Known" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Modules">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Modules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Modules" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Needs">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Needs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">english</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">japanese</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Needs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Needs_Known">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Needs_Known</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">english</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">japanese</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_practiced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">9,</span> <span class="pre">6,</span> <span class="pre">22,</span> <span class="pre">30,</span> <span class="pre">15,</span> <span class="pre">640790)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Needs_Known" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Task_Master">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Task_Master</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_ja</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_ja</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">difficulty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Task_Master" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Tasks">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">answer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">place1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">place2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">place3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">place4</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">place5</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_made</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">9,</span> <span class="pre">6,</span> <span class="pre">22,</span> <span class="pre">30,</span> <span class="pre">15,</span> <span class="pre">636916)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_ended</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Tasks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Users">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Users</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">admin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirmed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confirmed_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Words">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">english=None</span></em>, <em class="sig-param"><span class="pre">kana=None</span></em>, <em class="sig-param"><span class="pre">kanji=None</span></em>, <em class="sig-param"><span class="pre">romanji=Column('romanji'</span></em>, <em class="sig-param"><span class="pre">String(length=100)</span></em>, <em class="sig-param"><span class="pre">table=&lt;Words&gt;)</span></em>, <em class="sig-param"><span class="pre">tags=None</span></em>, <em class="sig-param"><span class="pre">module=None</span></em>, <em class="sig-param"><span class="pre">lesson=None</span></em>, <em class="sig-param"><span class="pre">user=None</span></em>, <em class="sig-param"><span class="pre">added_on=datetime.datetime(2021</span></em>, <em class="sig-param"><span class="pre">9</span></em>, <em class="sig-param"><span class="pre">6</span></em>, <em class="sig-param"><span class="pre">22</span></em>, <em class="sig-param"><span class="pre">30</span></em>, <em class="sig-param"><span class="pre">15</span></em>, <em class="sig-param"><span class="pre">627462)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Words" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.models.Words_Known">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.models.</span></span><span class="sig-name descname"><span class="pre">Words_Known</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_practiced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">9,</span> <span class="pre">6,</span> <span class="pre">22,</span> <span class="pre">30,</span> <span class="pre">15,</span> <span class="pre">629724)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.models.Words_Known" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-otsukare.my_forms">
+<span id="otsukare-my-forms"></span><h2>otsukare.my_forms<a class="headerlink" href="#module-otsukare.my_forms" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.Add_Term_Form">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">Add_Term_Form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Add_Term_Form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.Ask_Question_Form">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">Ask_Question_Form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Ask_Question_Form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.Login_Form">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">Login_Form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Login_Form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="otsukare.my_forms.Login_Form.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Login_Form.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the form by calling <code class="docutils literal notranslate"><span class="pre">validate</span></code> on each field.
+Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if validation passes.</p>
+<p>If the form defines a <code class="docutils literal notranslate"><span class="pre">validate_&lt;fieldname&gt;</span></code> method, it is
+appended as an extra validator for the field’s <code class="docutils literal notranslate"><span class="pre">validate</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>extra_validators</strong> – A dict mapping field names to lists of
+extra validator methods to run. Extra validators run after
+validators passed when creating the field. If the form has
+<code class="docutils literal notranslate"><span class="pre">validate_&lt;fieldname&gt;</span></code>, it is the last extra validator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.Multichoice">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">Multichoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Multichoice" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.Signup_Form">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">Signup_Form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Signup_Form" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="otsukare.my_forms.Signup_Form.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.Signup_Form.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the form by calling <code class="docutils literal notranslate"><span class="pre">validate</span></code> on each field.
+Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if validation passes.</p>
+<p>If the form defines a <code class="docutils literal notranslate"><span class="pre">validate_&lt;fieldname&gt;</span></code> method, it is
+appended as an extra validator for the field’s <code class="docutils literal notranslate"><span class="pre">validate</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>extra_validators</strong> – A dict mapping field names to lists of
+extra validator methods to run. Extra validators run after
+validators passed when creating the field. If the form has
+<code class="docutils literal notranslate"><span class="pre">validate_&lt;fieldname&gt;</span></code>, it is the last extra validator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="otsukare.my_forms.WrittenResponse">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">otsukare.my_forms.</span></span><span class="sig-name descname"><span class="pre">WrittenResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.my_forms.WrittenResponse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-otsukare.views">
+<span id="otsukare-views"></span><h2>otsukare.views<a class="headerlink" href="#module-otsukare.views" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="otsukare.views.record_audio">
+<span class="sig-prename descclassname"><span class="pre">otsukare.views.</span></span><span class="sig-name descname"><span class="pre">record_audio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#otsukare.views.record_audio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record audio from user and capture data, including title and blob.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="license.html" class="btn btn-neutral float-left" title="License" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Copyright © 2021 by Nick Jenkins. All rights reserved
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the &#34;Software&#34;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &#34;AS IS&#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

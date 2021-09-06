@@ -1,0 +1,516 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Python project quick start &mdash; Otsukare  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Otsukare
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Otsukare</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Python project quick start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="python-project-quick-start">
+<h1>Python project quick start<a class="headerlink" href="#python-project-quick-start" title="Permalink to this headline">¶</a></h1>
+<p>This repo is my personal python project quick starter.
+It contains my favourite tools and options for creating python projects for data science, web development, and adhoc projects.
+While this is intended to be a personal resource, this is open to public users.</p>
+<p>The quick-start includes the following features:</p>
+<ul class="simple">
+<li><p>Full set-up guide and checklist - <em>so you can quickly set up tooling and get into coding</em></p></li>
+<li><p>Choice of dependency and virtual environment management with full-featured poetry workflow or partial conda workflow - <em>so you can ensure code runs on different environments</em></p></li>
+<li><p>Pre-populated Git and Github assets including gitignore, codeowners, templates, issue labels - <em>to make your Github experience more enjoyable</em></p></li>
+<li><p>Documentation including README with prompts, opinionated CONTRIBUTORS guide, LICENSE, sphinx docs generation with markdown and API reference support, and actions to automatically generate Github pages - <em>to easily expose project documentation</em></p></li>
+<li><p>CI/CD framework including pre-commit for quick formatting, task automation with Nox, and Github Actions - <em>to ensure high quality releases</em></p></li>
+<li><p>Linting, type checking, and tests with minimum of tool config files and close nox and pyproject.toml integration - <em>to standardize code and minimize clutter</em></p></li>
+<li><p>Tools for release management including tagging and versioning process, Github actions for release notes, test-pypi and release actions - <em>to simplify the code release process</em></p></li>
+<li><p>Warmed up project example with logging, imports, pytest, argparse CLI, poetry scripts, docstrings - <em>to template good code practices</em></p></li>
+</ul>
+<p>This guide contains three major sections:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#python-project-quick-start">About this repo</a>. General info about this repo.</p></li>
+<li><p><a class="reference external" href="#instructions-for-copying-to-set-up-new-project">Setup new repo</a>. Instructions for copying this repo to create a new project.</p></li>
+<li><p><a class="reference external" href="#my-project">README Template</a>. Warmed up README template for new projects with writing prompts, instructions for usage and development.</p></li>
+</ul>
+<p>The following sources have been inspiration for creating my own project quick starter.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cjolowicz.github.io/posts/hypermodern-python-01-setup/">Hypermodern python</a></p></li>
+<li><p><a class="reference external" href="https://github.com/tiangolo/sqlmodel">SQLmodel</a></p></li>
+<li><p><a class="reference external" href="https://github.com/johnthagen/python-blueprint">Project blueprint</a></p></li>
+</ul>
+</div>
+<div class="section" id="instructions-for-copying-to-set-up-new-project">
+<h1>Instructions for copying to set up new project<a class="headerlink" href="#instructions-for-copying-to-set-up-new-project" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="clone-repo">
+<h2>1. Clone repo<a class="headerlink" href="#clone-repo" title="Permalink to this headline">¶</a></h2>
+<p>Clone repo locally and delete the <code class="docutils literal notranslate"><span class="pre">.git</span></code> directory to start fresh.</p>
+</div>
+<div class="section" id="pre-use-editing">
+<h2>2. Pre-use editing<a class="headerlink" href="#pre-use-editing" title="Permalink to this headline">¶</a></h2>
+<p>Change name from my_project to new name in:</p>
+</div>
+<div class="section" id="choose-any-of-poetry-conda-or-docker-compose-for-project">
+<h2>3. Choose any of poetry, conda (or docker-compose) for project.<a class="headerlink" href="#choose-any-of-poetry-conda-or-docker-compose-for-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="poetry">
+<h3>Poetry<a class="headerlink" href="#poetry" title="Permalink to this headline">¶</a></h3>
+<p>Ensure you have and installation of Poetry 1.2.0a1 or above, along with poetry-version-plugin.</p>
+<p>Make sure you deactivate any existing virtual environments (i.e. conda).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install
+</pre></div>
+</div>
+<p>You may need to point poetry to the correct python interpreter using the following command.
+In another terminal and in conda, run <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry env use /path/to/python3
+</pre></div>
+</div>
+<p>Enter the poetry shell.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+</pre></div>
+</div>
+<p>Remove tools not required by poetry, but required for conda</p>
+<ul class="simple">
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">setup.py</span></code></p></li>
+<li><p>Delete <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code></p></li>
+<li><p>Edit Conda references in <code class="docutils literal notranslate"><span class="pre">README.md</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="conda">
+<h3>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h3>
+<p><em>Note</em>: using conda will mean incompatability with some Nox, Github actions, and library publish functionality. Only the default Nox sessions are included (with light flake8 checks), plus black and docs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate my_project
+</pre></div>
+</div>
+<p>Additional conda related setup:</p>
+<ul class="simple">
+<li><p>Setup project details in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p></li>
+<li><p>Remove or update the following Github Actions:</p>
+<ul>
+<li><p>coverage</p></li>
+<li><p>release</p></li>
+<li><p>test-pypi</p></li>
+<li><p>tests</p></li>
+</ul>
+</li>
+<li><p>Update project README specify conda instructions</p></li>
+</ul>
+</div>
+<div class="section" id="docker-compose">
+<h3>Docker-compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h3>
+<p>Not currently supported, future TODO.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="instantiate-pre-commit-add-log-directory-create-new-git-repo">
+<h2>4. Instantiate pre-commit, add log directory, create new git repo<a class="headerlink" href="#instantiate-pre-commit-add-log-directory-create-new-git-repo" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit install
+git init
+git add .
+git add logs/.gitkeep --force
+git commit -m <span class="s2">&quot;initial commit&quot;</span>
+git tag <span class="m">0</span>.1.0
+</pre></div>
+</div>
+<p>Create a repo in github and follow instructions to push (including tags).</p>
+<p>Check if the branch name is <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">master</span></code> - Github Actions are set to use <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+</div>
+<div class="section" id="post-push-cleanup">
+<h2>5. Post push cleanup<a class="headerlink" href="#post-push-cleanup" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Setup Codecov connection</p></li>
+<li><p>Setup pypi and test-pypi secrets, uncomment test-pypi github action</p></li>
+<li><p>In Github repo set up dependabot and Github pages</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="my-project">
+<h1>My Project<a class="headerlink" href="#my-project" title="Permalink to this headline">¶</a></h1>
+<p>What is it, at a high high level?
+Who is the audience or end users? Any requirements?
+What are the feature and benefits?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#instructions-for-users">Instructions for users</a></p></li>
+<li><p><a class="reference external" href="#instructions-for-developers">Instructions for developers</a></p>
+<ul>
+<li><p><a class="reference external" href="#dependency-and-virtual-environment-management-library-development-and-build-with-poetry">Dependency and virtual environment management, library development and build with poetry</a></p></li>
+<li><p><a class="reference external" href="#dependency-and-virtual-environment-management-library-development-and-build-with-conda">Dependency and virtual environment management, library development and build with conda</a></p></li>
+<li><p><a class="reference external" href="#code-quality-testing-and-generating-documentation-with-nox">Code quality, testing, and generating documentation with Nox</a></p></li>
+<li><p><a class="reference external" href="#code-formatting-with-pre-commit">Code formatting with Pre-commit</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#contributors">Contributors</a></p></li>
+</ul>
+<div class="section" id="id1">
+<h2>Instructions for users<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The following are the quick start instructions for using the project as an end-user.
+<a class="reference external" href="#instructions-for-developers">Instructions for developers</a> follows this section.</p>
+<p>Installation (Note, not actually functioning):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install my_project
+</pre></div>
+</div>
+<p>Include an example of running the program with expected outputs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m my_project.utils -i1 environment.yml -i2 environment.yml -v
+...
+<span class="m">2021</span>-08-29 <span class="m">14</span>:59:09,489 <span class="o">[</span>DEBUG<span class="o">]</span> Loading main file from environment.yml
+<span class="m">2021</span>-08-29 <span class="m">14</span>:59:09,489 <span class="o">[</span>DEBUG<span class="o">]</span> Loading second file from environment.yml
+...
+  - pytest-cov<span class="o">=</span><span class="m">2</span>.10.1
+  - <span class="nv">python</span><span class="o">=</span>^3.8
+  - <span class="nv">sphinx</span><span class="o">=</span><span class="m">3</span>.2.1
+  - sphinx-autodoc-typehints<span class="o">=</span><span class="m">1</span>.12.0
+  - <span class="nv">sphinx_rtd_theme</span><span class="o">=</span><span class="m">0</span>.4.3
+</pre></div>
+</div>
+<p>Can also be run as a script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>my_project -i1 environment.yml -i2 environment.yml -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Instructions for developers<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The following are the setup instructions for developers looking to improve this project.
+For information on current contributors and guidelines see the <a class="reference external" href="#contributors">contributors</a> section.
+Follow each step here and ensure tests are working.</p>
+<div class="section" id="id5">
+<h3>Dependency and virtual environment management, library development and build with poetry<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Ensure you have and installation of Poetry 1.2.0a1 or above, along with poetry-version-plugin.</p>
+<p>Make sure you deactivate any existing virtual environments (i.e. conda).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry install
+</pre></div>
+</div>
+<p>You may need to point poetry to the correct python interpreter using the following command.
+In another terminal and in conda, run <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry env use /path/to/python3
+</pre></div>
+</div>
+<p>Library can be built using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry build
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Dependency and virtual environment management, library development and build with conda<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Following commands will create the conda environment and setup the library in interactive development mode using setup.py.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate my_project
+pip install -e .
+</pre></div>
+</div>
+<p>Library can be built using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py bdist_wheel
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Code quality, testing, and generating documentation with Nox<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Nox is a python task automation tool similar to Tox, Makefiles or scripts.</p>
+<p>The following command can be used to run mypy, lint, and tests.
+It is recommended to run these before pushing code, as this is run with Github Actions.
+Some checks such as black are run more frequently with <a class="reference external" href="#code-formatting-with-pre-commit">pre-commit</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry run nox
+</pre></div>
+</div>
+<p>Local Sphinx documentation can be generated with the following command.
+Documentation publishing using Github Actions to Github pages is enabled by default.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry run nox -s docs
+</pre></div>
+</div>
+<p>All other task automations commands can be optionally run locally with below command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry run nox -s black safety pytype typeguard coverage xdoctest autoflake
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Code formatting with Pre-commit<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>On first time use of the repository, pre-commit will need to be installed locally.
+You can use the following command to install and run pre-commit over all files.
+See .pre-commit-config.yaml for checks in use.
+Intention is to have lightweight checks that automatically make code changes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit run --all-files
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>Contributors<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.nickjenkins.com.au">Nick Jenkins</a> - Data Scientist, API &amp; Web dev, Team lead, Writer</p></li>
+</ul>
+<p>See <a class="reference external" href="CONTRIBUTING.md">CONTRIBUTING.md</a> in Github repo for specific instructions on contributing to project.</p>
+<p>Usage rights governed by <a class="reference external" href="LICENSE">LICENSE</a>  in Github repo or page footer.</p>
+</div>
+</div>
+<div class="section" id="otsukare-good-work">
+<h1>Otsukare! Good work<a class="headerlink" href="#otsukare-good-work" title="Permalink to this headline">¶</a></h1>
+<p>Otsukare is a web application to help Japanese language students study.</p>
+<p>This project was originally used in my masters degree for the ‘Educational Technologies’ subject. The subject had a lot of breadth, and I used this freedom to learn a new technology (the python flask framework).</p>
+<p>The website is still online (although buggy) at <a class="reference external" href="https://otsukare.herokuapp.com/">https://otsukare.herokuapp.com/</a></p>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Guide to running the scripts locally.</p>
+<ol class="arabic simple">
+<li><p>Project uses Pipenv. I have updated the ‘Pipfile’ to use python 3.7 and fixed a dependency</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install pipenv
+pipenv install
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Local postgres instance required <a class="reference external" href="https://postgresapp.com/downloads.html">https://postgresapp.com/downloads.html</a></p></li>
+<li><p>Create otsukare database</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/Applications/Postgres.app/Contents/Versions/12/bin/psql -c <span class="s2">&quot;create database otsukare&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Populate postgres:otsukare database</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipenv shell
+python manage.py create_db
+python manage.py add_db
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Run otsukare webserver (from within pipenv shell)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python otsukare.py
+</pre></div>
+</div>
+</li>
+<li><p>Visit local website <a class="reference external" href="http://localhost:5000/">http://localhost:5000/</a></p></li>
+</ol>
+</div>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>Once updates have been made to the scripts, can redeploy the web service on Heroku using the following. This should be done when ready to deploy after a git master branch update.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push heroku master
+</pre></div>
+</div>
+<p>Read logs to determine if deployment was successful. Following are some useful commands to verify;</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku open
+heroku logs --tail
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Copyright © 2021 by Nick Jenkins. All rights reserved
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the &#34;Software&#34;),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &#34;AS IS&#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
