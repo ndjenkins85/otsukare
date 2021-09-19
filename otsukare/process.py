@@ -83,13 +83,20 @@ def extract_duolingo_words_not_in_database():
     database = pd.read_csv(input_path)
 
     # Get simple set of known kanji and kana
-    kanji = database["kanji"].dropna()
-    non_kanji_index = set(database.index) - set(kanji.index)
-    kana = database.loc[non_kanji_index, "kana"]
-    known_words = set(kanji) | set(kana)
+    known_kanji = database.dropna(subset=["kanji"])
+    kanji = set(known_kanji["kanji"])
+    kanji_kana = set(known_kanji["kana"])
+
+    non_kanji_index = set(database.index) - set(known_kanji.index)
+    kana = set(database.loc[non_kanji_index, "kana"])
+    known_words = kanji | kanji_kana | kana
 
     # Simple dataframe of new duolingo words
     duolingo_new_words = parsed_words.loc[~parsed_words["Word"].isin(known_words)].sort_values(["hours"])
+
+    # Format to be similar to database
+    duolingo_new_words = duolingo_new_words.rename(columns={"Word": "romanji"})
+    duolingo_new_words = pd.DataFrame(duolingo_new_words, columns=database.columns + ["hours"])
 
     output_path = Path("data", "duolingo_new_words.csv")
     logging.debug(f"Saving CSV to {output_path}")
