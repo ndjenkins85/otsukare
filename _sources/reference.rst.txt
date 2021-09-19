@@ -5,6 +5,11 @@ Reference
     :local:
     :backlinks: none
 
+otsukare.process
+----------------
+
+.. automodule:: otsukare.process
+   :members:
 
 otsukare.analysis
 -----------------
