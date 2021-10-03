@@ -164,9 +164,7 @@
   <div class="section" id="updating-words-process">
 <h1>Updating words process<a class="headerlink" href="#updating-words-process" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
-<li><p>Visit <a class="reference external" href="https://www.duolingo.com/words">https://www.duolingo.com/words</a></p></li>
-<li><p>Use inspect element on page. Right click the first <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code> tag and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">as</span> <span class="pre">HTML</span></code>. Copy entire text into <code class="docutils literal notranslate"><span class="pre">data/duolingo_words.html</span></code></p></li>
-<li><p>Download a local copy of the database as CSV to <code class="docutils literal notranslate"><span class="pre">data/nick_japanese</span> <span class="pre">-</span> <span class="pre">words.csv</span></code></p></li>
+<li><p>Visit Google Sheets, File -&gt; Download -&gt; CSV. Save to <code class="docutils literal notranslate"><span class="pre">data</span></code> folder as <code class="docutils literal notranslate"><span class="pre">nick_japanese</span> <span class="pre">-</span> <span class="pre">words.csv</span></code>.</p></li>
 <li><p>Run the following command <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">otsukare.process</span> <span class="pre">-v</span></code>. This will produce a CSV with unknown Duolingo words to <code class="docutils literal notranslate"><span class="pre">data/duolingo_new_words.csv</span></code>.</p></li>
 <li><p>Upload these words to database in new tab; add new known words.</p></li>
 <li><p>If known, move to Kanji and Kana columns and add english. Remove rows where still unsure/unknown.</p></li>
