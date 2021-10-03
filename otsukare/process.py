@@ -20,61 +20,43 @@
 
 """Tools for the manual processing of Duolingo <-> Database."""
 import argparse
+import getpass
 import logging
+from datetime import datetime as dt
 from pathlib import Path
 
+import duolingo
 import pandas as pd
-from bs4 import BeautifulSoup
+from tqdm import tnrange
 
 
-def convert_duolingo_time_to_hours(duolingo_hours) -> pd.Series:
-    """Given a pandas series with duolingo time, produce hours conversion."""
-    hour_replacements = {
-        "Just now": 1,
-        "yesterday": 24,
-        "hours ago": 1,
-        "hour ago": 1,
-        "days ago": 24,
-        "day ago": 24,
-        "weeks ago": 24 * 7,
-        "week ago": 24 * 7,
-        "months ago": 24 * 7 * 31,
-        "month ago": 24 * 7 * 31,
-        "years ago": 24 * 7 * 52,
-        "year ago": 24 * 7 * 52,
-    }
-    new_duolingo_hours = duolingo_hours
+def get_duolingo_info():
+    """Login to Duolingo, get known words, details and translations."""
+    lingo = duolingo.Duolingo("bluemania", getpass.getpass())
 
-    for text, hours in hour_replacements.items():
-        new_duolingo_hours = new_duolingo_hours.str.replace(text, str(hours))
+    vocab_overview = lingo.get_vocabulary("ja")["vocab_overview"]
+    keep_cols = ["word_string", "last_practiced_ms", "skill", "strength"]
 
-    new_duolingo_hours = new_duolingo_hours.str.split(expand=True).fillna(1).astype(int).cumprod(axis=1)[1]
-    return new_duolingo_hours
+    df = pd.DataFrame(vocab_overview)
+    df = df[keep_cols]
+    df["last_practiced_ms"] = pd.to_datetime(df["last_practiced_ms"], unit="ms")
+    df = df.drop_duplicates(subset="word_string")
+    df = df.reset_index(drop=True)
+    df["translation"] = ""
 
+    for i in tnrange(len(df.index)):
+        word_string = df.loc[i, "word_string"]
+        response = lingo.get_translations([word_string], source="ja", target="en")
+        translation = " / ".join(response[word_string])
+        df.loc[i, "translation"] = translation
 
-def parse_duolingo_html():
-    """Converts raw HTML into cleaned up csv using BeautifulSoup4 and pandas."""
-    input_path = Path("data", "duolingo_words.html")
-    logging.debug(f"Loading HTML from {input_path}")
-    with open(input_path, "r") as f:
-        soup = BeautifulSoup(f.read(), "html.parser")
-
-    table = soup.find("table")
-    parsed_words = pd.read_html(table.prettify())[0]
-
-    parsed_words["hours"] = convert_duolingo_time_to_hours(parsed_words["Last practiced"])
-
-    # Only take unique words to export to CSV
-    parsed_words = parsed_words[["Word", "hours"]].drop_duplicates(subset="Word").sort_index()
-
-    output_path = Path("data", "duolingo_words_raw.csv")
-    logging.debug(f"Saving CSV to {output_path}")
-    parsed_words.to_csv(output_path, encoding="utf-8", index=False)
+    output_path = Path("data", "duo_info.csv")
+    df.to_csv(output_path, index=False)
 
 
 def extract_duolingo_words_not_in_database():
     """Checks duolingo list for words not in database and creates extract."""
-    input_path = Path("data", "duolingo_words_raw.csv")
+    input_path = Path("data", "duo_info.csv")
     logging.debug(f"Loading CSV from {input_path}")
     parsed_words = pd.read_csv(input_path)
 
@@ -91,12 +73,29 @@ def extract_duolingo_words_not_in_database():
     kana = set(database.loc[non_kanji_index, "kana"])
     known_words = kanji | kanji_kana | kana
 
+    duolingo_new_words = parsed_words.loc[~parsed_words["word_string"].isin(known_words)].sort_values(
+        ["last_practiced_ms"]
+    )
+
     # Simple dataframe of new duolingo words
-    duolingo_new_words = parsed_words.loc[~parsed_words["Word"].isin(known_words)].sort_values(["hours"])
+    column_rename = {
+        "word_string": "romanji",
+        "last_practiced_ms": "last_practiced",
+        "skill": "source",
+        "translation": "english",
+    }
 
     # Format to be similar to database
-    duolingo_new_words = duolingo_new_words.rename(columns={"Word": "romanji"})
-    duolingo_new_words = pd.DataFrame(duolingo_new_words, columns=database.columns + ["hours"])
+    columns = database.columns.tolist() + ["last_practiced", "strength"]
+    duolingo_new_words = duolingo_new_words.rename(columns=column_rename)
+    duolingo_new_words = pd.DataFrame(duolingo_new_words, columns=columns)
+    duolingo_new_words["date_added"] = dt.now().date()
+
+    # Only include those words practiced in last 6 months
+    duolingo_new_words["last_practiced"] = pd.to_datetime(duolingo_new_words["last_practiced"])
+    duolingo_new_words = duolingo_new_words.loc[
+        duolingo_new_words["last_practiced"] > dt.now() - pd.DateOffset(month=6)
+    ]
 
     output_path = Path("data", "duolingo_new_words.csv")
     logging.debug(f"Saving CSV to {output_path}")
@@ -123,7 +122,7 @@ def run() -> None:
         )
         logging.warning("'/logs/' directory missing, cannot create log files.")
 
-    parse_duolingo_html()
+    get_duolingo_info()
     extract_duolingo_words_not_in_database()
 
 
