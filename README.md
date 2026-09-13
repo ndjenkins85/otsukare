@@ -4,16 +4,15 @@ Otsukare is a web application to help Japanese language students study.
 
 This project was originally used in my masters degree for the 'Educational Technologies' subject. The subject had a lot of breadth, and I used this freedom to learn a new technology (the python flask framework).
 
-The alpha version website is online at https://otsukare.herokuapp.com/
+The application is served at https://www.ndjenkins.com/projects/otsukare/.
 
 * [Instructions for users](#instructions-for-users)
 * [Instructions for developers](#instructions-for-developers)
   * [Dependency and virtual environment management, library development and build with poetry](#dependency-and-virtual-environment-management-library-development-and-build-with-poetry)
-  * [Dependency and virtual environment management, library development and build with conda](#dependency-and-virtual-environment-management-library-development-and-build-with-conda)
   * [Code quality, testing, and generating documentation with Nox](#code-quality-testing-and-generating-documentation-with-nox)
   * [Code formatting with Pre-commit](#code-formatting-with-pre-commit)
   * [Run local scripts](#run-local-scripts)
-  * [Deploy to Heroku](#deploy-to-heroku)
+  * [Deploy to Railway](#deploy-to-railway)
 * [Contributors](#contributors)
 
 ## Instructions for users
@@ -21,7 +20,7 @@ The alpha version website is online at https://otsukare.herokuapp.com/
 The following are the quick start instructions for using the project as an end-user.
 [Instructions for developers](#instructions-for-developers) follows this section.
 
-Visit the [heroku website](https://otsukare.herokuapp.com/) to use the application.
+Visit [Otsukare on ndjenkins.com](https://www.ndjenkins.com/projects/otsukare/) to use the application.
 
 ## Instructions for developers
 
@@ -31,7 +30,7 @@ Follow each step here and ensure tests are working.
 
 ### Dependency and virtual environment management, library development and build with poetry
 
-Ensure you have and installation of Poetry 1.2.0a1 or above, along with poetry-version-plugin.
+Use Python 3.12 and Poetry 2.1.1 or newer, along with poetry-version-plugin.
 
 Make sure you deactivate any existing virtual environments (i.e. conda).
 
@@ -49,22 +48,6 @@ Library can be built using
 
 ```bash
 poetry build
-```
-
-### Dependency and virtual environment management, library development and build with conda
-
-Following commands will create the conda environment and setup the library in interactive development mode using setup.py.
-
-```bash
-conda env create -f environment.yml
-conda activate my_project
-pip install -e .
-```
-
-Library can be built using
-
-```bash
-python setup.py bdist_wheel
 ```
 
 ### Code quality, testing, and generating documentation with Nox
@@ -105,52 +88,35 @@ pre-commit run --all-files
 
 ### Run local scripts
 
-Guide to running the scripts locally.
+The application requires these environment variables and fails at startup if
+`SECRET_KEY` or `DATABASE_URL` is absent:
 
-1. Project uses Pipenv. I have updated the 'Pipfile' to use python 3.7 and fixed a dependency
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection URL (SQLite is supported for tests) |
+| `SECRET_KEY` | High-entropy Flask session secret |
+| `GATEWAY_AUTH_SECRET` | Must exactly match the identity helper's signing secret |
+| `OTSUKARE_ADMIN_SUB` | Logto subject allowed to use administration features |
+| `PORT` | Container listen port, supplied by Railway |
 
-``` bash
-pip install pipenv
-pipenv install
+Run the local server after setting the variables with `poetry run python run.py`.
+Requests other than `/healthz` must carry a valid gateway token for the exact
+`/projects/otsukare` prefix.
+
+The Logto cut-over intentionally discards all old users and their progress while
+preserving core study content. It requires explicit confirmation:
+
+```bash
+poetry run python scripts/reset_users.py --yes
 ```
 
-2. Local postgres instance required https://postgresapp.com/downloads.html
+### Deploy to Railway
 
-3. Create otsukare database
-
-``` bash
-/Applications/Postgres.app/Contents/Versions/12/bin/psql -c "create database otsukare"
-```
-
-4. Populate postgres:otsukare database
-
-``` bash
-pipenv shell
-python manage.py create_db
-python manage.py add_db
-```
-
-5. Run otsukare webserver (from within pipenv shell)
-``` bash
-python run.py
-```
-
-6. Visit local website http://localhost:5000/
-
-
-### Deploy to Heroku
-
-Once updates have been made to the scripts, can redeploy the web service on Heroku using the following. This should be done when ready to deploy after a git master branch update.
-``` bash
-git push heroku master
-```
-
-Read logs to determine if deployment was successful. Following are some useful commands to verify;
-
-``` bash
-heroku open
-heroku logs --tail
-```
+Build this repository's `Dockerfile`, set all variables above, and configure the
+service health check as `/healthz`. The container idempotently creates any missing
+database tables before Gunicorn starts; `scripts/reset_users.py --yes` remains the
+only destructive schema path. The gateway must send
+`X-Forwarded-Prefix: /projects/otsukare` and a signed `X-Gateway-Auth` header.
 
 
 ## Contributors

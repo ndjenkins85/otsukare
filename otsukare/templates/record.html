@@ -7,6 +7,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
         <script src="{{ url_for('static', filename='js/bootstrap-editable.min.js') }}"></script>
+        <script>
+          window.OTSUKARE_RECORD_URL = {{ url_for('record_audio')|tojson }};
+          window.OTSUKARE_RECORDER_WORKER_URL = {{ url_for('static', filename='js/recorderWorker.js')|tojson }};
+        </script>
         <script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
         <script src="{{ url_for('static', filename='js/recorderFunctions.js') }}"></script>
     </head>

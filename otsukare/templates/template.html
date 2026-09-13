@@ -25,20 +25,15 @@
 <div class="wrapper row1x">
   <header id="header" class="clear">
     <div id="hgroup">
-      <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" width=220></a>
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static',filename='images/logo.png') }}" width=220></a>
     </div>
     <nav>
         <ul>
 
-        <li><a href="play">{% if not current_user.is_authenticated %}How to {% endif %}Play</a></li>
-        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('play') }}">Play</a></li>
         <li>
-        Logged in as: <b><a href="play"><img src="{{ url_for('static',filename='images/' + current_user.icon + '.png') }}" height=15> {{ current_user.username }}</b></a></li>
-        <li class="last"><a href="logout">Logout</a></li>
-        {% else %}
-        <li><a href="login">Login</a></li>
-        <li><a href="signup">Signup</a></li>
-        {% endif %}
+        Logged in as: <b><a href="{{ url_for('play') }}"><img src="{{ url_for('static',filename='images/' + current_user.icon + '.png') }}" height=15> {{ current_user.username }}</b></a></li>
+        <li class="last"><a href="/auth/logout?rd={{ url_for('home')|urlencode }}">Sign out</a></li>
 
 
       </ul>
@@ -47,8 +42,8 @@
     {% if current_user.admin %}
     <nav>
       <ul>
-        <li><a href="add_word">Add words</a></li>
-        <li><a href="view_words">View words</a></li>
+        <li><a href="{{ url_for('add_word') }}">Add words</a></li>
+        <li><a href="{{ url_for('view_words') }}">View words</a></li>
       </ul>
     </nav>
 

@@ -5,6 +5,11 @@ Reference
     :local:
     :backlinks: none
 
+otsukare.process
+----------------
+
+.. automodule:: otsukare.process
+   :members:
 
 otsukare.analysis
 -----------------
@@ -16,18 +21,6 @@ otsukare.config
 ---------------
 
 .. automodule:: otsukare.config
-   :members:
-
-otsukare.email
---------------
-
-.. automodule:: otsukare.email
-   :members:
-
-otsukare.make_token
--------------------
-
-.. automodule:: otsukare.make_token
    :members:
 
 otsukare.models

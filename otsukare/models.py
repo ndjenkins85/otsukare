@@ -18,10 +18,10 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import hmac
+import os
 import random
 from datetime import datetime
-
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from otsukare import db
 
@@ -29,53 +29,31 @@ from otsukare import db
 class Users(db.Model):
     __tablename__ = "Users"
     id = db.Column(db.INT, primary_key=True)
-    username = db.Column(db.String(100), unique=True, nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(120))
-
-    admin = db.Column(db.Boolean, nullable=False)
+    logto_sub = db.Column(db.String(255), unique=True, nullable=False, index=True)
+    username = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
-    confirmed = db.Column(db.Boolean, nullable=False)
-    confirmed_on = db.Column(db.DateTime, nullable=True)
 
     yen = db.Column(db.INT)
     icon = db.Column(db.String(10))
 
-    def __init__(
-        self, username, email, password, admin=False, confirmed=False, confirmed_on=None, yen=0, xp=0, icon=None
-    ):
-        self.username = username.title()
-        self.email = email.lower()
-        self.set_password(password)
-
-        self.admin = admin
+    def __init__(self, logto_sub, username, email, yen=0, icon=None):
+        self.logto_sub = logto_sub
+        self.username = username
+        self.email = email
         self.registered_on = datetime.now()
-        self.confirmed = confirmed
-        self.confirmed_on = confirmed_on
-
         self.yen = yen
-        self.icon = random.choice(["br", "gr", "lr", "pr", "rr", "yr"])
+        self.icon = icon or random.choice(["br", "gr", "lr", "pr", "rr", "yr"])
 
-    def set_password(self, password):
-        self.password = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
+    @property
+    def admin(self):
+        """Return whether this Logto subject is the configured administrator."""
+        admin_sub = os.environ.get("OTSUKARE_ADMIN_SUB", "")
+        return bool(admin_sub) and hmac.compare_digest(self.logto_sub, admin_sub)
 
     @property
     def is_authenticated(self):
         return True
-
-    @property
-    def is_active(self):
-        return True
-
-    @property
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return str(self.id)
 
     def __repr__(self):
         return "<User %r>" % (self.username)
@@ -108,7 +86,7 @@ class Words(db.Model):
         english=None,
         kana=None,
         kanji=None,
-        romanji=romanji,
+        romanji=None,
         tags=None,
         module=None,
         lesson=None,
