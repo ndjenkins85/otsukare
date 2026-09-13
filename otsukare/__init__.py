@@ -1,4 +1,5 @@
 """Flask init for Otsukare app."""
+
 # Copyright © 2021 by Nick Jenkins. All rights reserved
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,8 +21,10 @@
 # DEALINGS IN THE SOFTWARE.
 
 from flask import Flask
-from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.middleware.proxy_fix import ProxyFix
+
+from otsukare.prefix import ForwardedPrefixMiddleware
 
 
 def create_app() -> Flask:
@@ -36,8 +39,14 @@ def create_app() -> Flask:
 
 
 app = create_app()
-mail = Mail(app)
 db = SQLAlchemy(app)
+app.wsgi_app = ProxyFix(  # type: ignore[method-assign]
+    ForwardedPrefixMiddleware(app.wsgi_app), x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
+
+from otsukare.gateway_identity import init_app as init_gateway_identity  # noqa: E402
+
+init_gateway_identity(app)
 
 import otsukare.views  # noqa: E402
 

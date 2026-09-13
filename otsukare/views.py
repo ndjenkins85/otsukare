@@ -23,24 +23,29 @@ import random
 from datetime import datetime
 
 import pandas as pd
-from flask import flash, redirect, render_template, request, session, url_for
-from flask_login import LoginManager, current_user, login_required, login_user, logout_user
+from flask import abort, flash, redirect, render_template, request, url_for
 
 from otsukare import app
 from otsukare.analysis import *
-from otsukare.email import send_email
-from otsukare.make_token import *
+from otsukare.gateway_identity import current_user
 from otsukare.models import *
 from otsukare.my_forms import *
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "login"
+
+def _require_admin():
+    """Reject access unless the gateway subject is the configured administrator."""
+    if not current_user.admin:
+        abort(403)
+
+
+@app.route("/healthz")
+def healthz():
+    """Return an unauthenticated liveness response."""
+    return {"status": "ok"}
 
 
 @app.route("/")
 def home():
-
     kana_known = (
         pd.read_sql('SELECT * from "Kana_Known"', db.engine.connect().connection)[["user_id", "tokens"]]
         .groupby("user_id")
@@ -70,113 +75,22 @@ def home():
     html = (
         table.style.set_properties(**{"font-size": "9pt", "font-family": "Calibri", "text-align": "center"})
         .set_table_attributes('class="dataframe table table-hover table-bordered"')
-        .render()
+        .to_html()
     )
 
     return render_template("index.html", table=html)
 
 
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    form = Signup_Form(request.form)
-    if request.method == "POST":
-        if form.validate():
-            add_new_user = Users(form.username.data, form.email.data, form.password.data)
-            db.session.add(add_new_user)
-            db.session.commit()
-
-            session["email"] = add_new_user.email
-            token = generate_confirmation_token(add_new_user.email)
-
-            confirm_url = url_for("confirm_email", token=token, _external=True)
-            html = render_template("activate.html", confirm_url=confirm_url, username=add_new_user.username)
-            subject = "Please confirm your email"
-            send_email(add_new_user.email, subject, html)
-
-            flash("Successfully signed up. Please check your email (and Junk folder) to complete the validation step.")
-            return redirect(url_for("home"))
-
-    return render_template("signup.html", form=form)
-
-
-@app.route("/confirm/<token>")
-def confirm_email(token):
-    try:
-        email = confirm_token(token)
-    except:
-        flash("The confirmation link is invalid or has expired.")
-    user = Users.query.filter_by(email=email).first()
-    if user.confirmed:
-        flash("Account already confirmed. Please login.")
-    else:
-        user.confirmed = True
-        user.confirmed_on = datetime.now()
-        db.session.add(user)
-        db.session.commit()
-        flash("You have confirmed your account. Thanks!")
-    return redirect(url_for("home"))
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return Users.query.get(user_id)
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    form = Login_Form(request.form)
-
-    if request.method == "POST":
-        if form.validate():
-            user = Users.query.filter_by(username=form.username.data.title()).first()
-            login_user(user)
-            flash("Logged in as " + user.username.title() + ". Welcome!")
-            return redirect(url_for("home"))
-
-    return render_template("login.html", form=form)
-
-
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    flash("Successfully logged out. See you soon!")
-    return redirect(url_for("home"))
-
-
 @app.route("/leaderboard")
 def leaderboard():
     flash("This page is work in progress")
-    leaders = (
-        Users.query.filter_by(confirmed=True)
-        .with_entities(Users.icon, Users.username, Users.yen, Users.admin)
-        .order_by(Users.yen.desc())
-    )
+    leaders = Users.query.order_by(Users.yen.desc())
     return render_template("leaderboard.html", leaders=leaders)
 
 
-@app.route("/delete_user")
-@login_required
-def delete_user():
-    if not current_user.admin:
-        flash("Admin only page requested, redirecting")
-        return redirect(url_for("home"))
-
-    username = request.args.get("username")
-    delete_user = Users.query.filter_by(username=username).first()
-    db.session.delete(delete_user)
-    db.session.commit()
-
-    flash("User " + username + " deleted")
-    return redirect(url_for("leaderboard"))
-
-
 @app.route("/add_word", methods=["GET", "POST"])
-@login_required
 def add_word():
-    if not current_user.admin:
-        flash("Admin only page requested, redirecting")
-        return redirect(url_for("home"))
+    _require_admin()
 
     form = Add_Term_Form(request.form)
     form.module.choices = [(x.modules, x.modules) for x in Modules.query.all()]
@@ -204,21 +118,15 @@ def add_word():
 
 
 @app.route("/view_words")
-@login_required
 def view_words():
-    if not current_user.admin:
-        flash("Admin only page requested, redirecting")
-        return redirect(url_for("home"))
+    _require_admin()
     words = Words.query.all()
     return render_template("words.html", words=words)
 
 
 @app.route("/save_words")
-@login_required
 def save_words():
-    if not current_user.admin:
-        flash("Admin only page requested, redirecting")
-        return redirect(url_for("home"))
+    _require_admin()
     try:
         sql_table_to_excel("Words", db)
         flash("Words saved to excel")
@@ -228,11 +136,8 @@ def save_words():
 
 
 @app.route("/delete_word")
-@login_required
 def delete_word():
-    if not current_user.admin:
-        flash("Admin only page requested, redirecting")
-        return redirect(url_for("home"))
+    _require_admin()
 
     word_id = request.args.get("word_id")
     delete_word = Words.query.filter_by(id=word_id).first()
@@ -250,7 +155,6 @@ def play():
 
 
 @app.route("/learn_kana", methods=["GET", "POST"])
-@login_required
 def learn_kana():
 
     form = get_task(current_user, request=request, task_master_id=random.choice([1, 2, 3, 4, 5]))
@@ -275,7 +179,6 @@ def learn_kana():
 
 
 @app.route("/learn_words", methods=["GET", "POST"])
-@login_required
 def learn_words():
 
     form = get_task(current_user, request=request, task_master_id=random.choice([6, 7, 8, 9, 10, 11, 12]))
@@ -299,7 +202,6 @@ def learn_words():
 
 
 @app.route("/learn_sentences", methods=["GET", "POST"])
-@login_required
 def learn_sentences():
     form = get_task(current_user, request=request, task_master_id=random.choice([13, 14, 15, 16, 17]))
 
@@ -315,7 +217,6 @@ def learn_sentences():
 
 
 @app.route("/learn_key_phrases")
-@login_required
 def learn_tasks():
 
     flash("Not implemented")
@@ -326,7 +227,6 @@ def learn_tasks():
 
 
 @app.route("/stats_kana")
-@login_required
 def stats_kana():
 
     flash("Not implemented")
@@ -337,7 +237,6 @@ def stats_kana():
 
 
 @app.route("/stats_words")
-@login_required
 def stats_words():
 
     flash("Not implemented")
@@ -348,7 +247,6 @@ def stats_words():
 
 
 @app.route("/stats_needs")
-@login_required
 def stats_needs():
 
     flash("Not implemented")
@@ -359,7 +257,6 @@ def stats_needs():
 
 
 @app.route("/stats_tasks")
-@login_required
 def stats_tasks():
 
     flash("Not implemented")

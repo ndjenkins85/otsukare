@@ -58,14 +58,14 @@ function createDownloadLink() {
       form.append('transcript', myTranscript);
       $.ajax({
         type: 'POST',
-        url: '/record',
+        url: window.OTSUKARE_RECORD_URL,
         data: form,
         cache: false,
         processData: false,
         contentType: false,
       }).done(function(data) {
         console.log(data);
-        window.location.href = "/record";
+        window.location.href = window.OTSUKARE_RECORD_URL;
       });
     });
 

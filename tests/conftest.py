@@ -19,3 +19,35 @@
 # DEALINGS IN THE SOFTWARE.
 
 """Shared tests."""
+
+import os
+import secrets
+
+import pytest
+
+
+TEST_GATEWAY_AUTH_SECRET = secrets.token_hex(32)
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+os.environ["SECRET_KEY"] = secrets.token_hex(32)
+os.environ["GATEWAY_AUTH_SECRET"] = TEST_GATEWAY_AUTH_SECRET
+os.environ["OTSUKARE_ADMIN_SUB"] = "admin-sub"
+
+from otsukare import app, db  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def database():
+    """Create a clean in-memory schema for each test."""
+    app.config.update(TESTING=True, WTF_CSRF_ENABLED=False)
+    with app.app_context():
+        db.create_all()
+    yield
+    with app.app_context():
+        db.session.remove()
+        db.drop_all()
+
+
+@pytest.fixture
+def client():
+    """Return the Flask test client."""
+    return app.test_client()

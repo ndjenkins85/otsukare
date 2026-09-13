@@ -12,7 +12,7 @@ Total correct exercises displayed on the right</small>
     <td>
 
         {% if current_user.is_authenticated %}
-        <a href="learn_kana">
+        <a href="{{ url_for('learn_kana') }}">
 <img src="{{ url_for('static',filename='images/gr.png') }}" width=20>
 
         Learn Kana
@@ -25,7 +25,7 @@ Total correct exercises displayed on the right</small>
     <td style="width:180px">
 
         {% if current_user.is_authenticated %}
-        <!--<a href="stats_kana">-->
+        <!--<a href="{{ url_for('stats_kana') }}">-->
         Parts: {{ stats["kana_parts"] }}
         <!--</a>-->
         {% else %}
@@ -38,7 +38,7 @@ Total correct exercises displayed on the right</small>
     <td>
 
         {% if current_user.is_authenticated %}
-        <a href="learn_words">
+        <a href="{{ url_for('learn_words') }}">
 <img src="{{ url_for('static',filename='images/br.png') }}" width=20>
 
         Learn Words
@@ -51,7 +51,7 @@ Total correct exercises displayed on the right</small>
     <td style="width:180px">
 
         {% if current_user.is_authenticated %}
-        <!--<a href="stats_words">-->
+        <!--<a href="{{ url_for('stats_words') }}">-->
         Seen: {{ stats["words_known"] }}
         <!--</a>-->
         {% else %}
@@ -64,7 +64,7 @@ Total correct exercises displayed on the right</small>
     <td>
 
         {% if current_user.is_authenticated %}
-        <a href="learn_sentences">
+        <a href="{{ url_for('learn_sentences') }}">
 <img src="{{ url_for('static',filename='images/yr.png') }}" width=20>
         Learn Sentences
         </a>
@@ -76,7 +76,7 @@ Total correct exercises displayed on the right</small>
     <td style="width:180px">
 
         {% if current_user.is_authenticated %}
-        <!--<a href="stats_needs">     -->
+        <!--<a href="{{ url_for('stats_needs') }}">     -->
         Sentences: {{ stats["needs_percent"] }}
         <!--</a>     -->
         {% else %}
@@ -92,7 +92,7 @@ Total correct exercises displayed on the right</small>
     <td>
 
         {% if current_user.is_authenticated %}
-        <a href="learn_key_phrases">
+        <a href="{{ url_for('learn_tasks') }}">
         Learn Key Phrases
         </a>
         {% else %}
@@ -103,7 +103,7 @@ Total correct exercises displayed on the right</small>
     <td style="width:100px">
 
         {% if current_user.is_authenticated %}
-        <a href="stats_tasks">
+        <a href="{{ url_for('stats_tasks') }}">
         Phrases: {{ stats["yen"]}}
         </a>
         {% else %}

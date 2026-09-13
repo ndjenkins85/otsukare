@@ -1,28 +1,21 @@
 # manage.py
-import os
-from datetime import datetime
+import argparse
 
 import pandas as pd
-from flask_script import Manager
 
 from otsukare import app
 from otsukare.analysis import romanji_from_kana, sql_table_to_excel
 from otsukare.models import *
 
-manager = Manager(app)
 
-
-@manager.command
 def create_db():
     db.create_all()
 
 
-@manager.command
 def drop_db():
     db.drop_all()
 
 
-@manager.command
 def add_db():
 
     df = pd.read_excel("data/hiragana.xlsx")
@@ -72,28 +65,6 @@ def add_db():
         db.session.add(new_task)
     db.session.commit()
 
-    admin = Users(
-        "Bluemania",
-        "nick.jenkins@evolveresearch.com.au",
-        "password",
-        admin=True,
-        yen=200,
-        confirmed=True,
-        confirmed_on=datetime.now(),
-    )
-    db.session.add(admin)
-    monkey = Users(
-        "Skyver",
-        "damnthatswack@hotmail.com",
-        "password",
-        admin=False,
-        yen=50,
-        confirmed=True,
-        confirmed_on=datetime.now(),
-    )
-    db.session.add(monkey)
-    db.session.commit()
-
     df = pd.read_csv("data/modules.csv")
     for term in df["modules"].tolist():
         new_term = Modules(term)
@@ -101,15 +72,29 @@ def add_db():
     db.session.commit()
 
 
-@manager.command
 def write_words():
     sql_table_to_excel("Words", db)
 
 
-@manager.command
 def test():
     sql_table_to_excel("Kana_Known", db)
 
 
+def main():
+    """Run a legacy database maintenance command."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command", choices=["create_db", "drop_db", "add_db", "write_words", "test"])
+    args = parser.parse_args()
+    commands = {
+        "create_db": create_db,
+        "drop_db": drop_db,
+        "add_db": add_db,
+        "write_words": write_words,
+        "test": test,
+    }
+    with app.app_context():
+        commands[args.command]()
+
+
 if __name__ == "__main__":
-    manager.run()
+    main()

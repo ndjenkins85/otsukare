@@ -30,7 +30,7 @@
 	<td>{{ row.tags }}</td>
 	<td>{{ row.module }}</td>
 	<td>{{ row.lesson }}</td>
-	<td><a href="delete_word?word_id={{ row.id }}">Delete</a></td>
+		<td><a href="{{ url_for('delete_word', word_id=row.id) }}">Delete</a></td>
 
 </tr>
 {% endfor %}
