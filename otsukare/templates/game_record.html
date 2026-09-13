@@ -114,6 +114,10 @@ Your speech will be transcribed; You can submit answer or rerecord.
 
 
 
+<script>
+window.OTSUKARE_RECORD_URL = {{ url_for('record_audio')|tojson }};
+window.OTSUKARE_RECORDER_WORKER_URL = {{ url_for('static', filename='js/recorderWorker.js')|tojson }};
+</script>
 <script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
 <script src="{{ url_for('static',filename='js/recorderFunctions.js') }}"></script>
 <script src="{{ url_for('static',filename='kuroshiro.min.js') }}"></script>

@@ -21,34 +21,32 @@
 import os
 
 
+def _required_env(name):
+    """Return a required environment variable or fail during startup."""
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(f"{name} must be set")
+    return value
+
+
+def _database_url():
+    """Return SQLAlchemy's database URL, normalizing legacy Postgres URLs."""
+    database_url = _required_env("DATABASE_URL")
+    if database_url.startswith("postgres://"):
+        return database_url.replace("postgres://", "postgresql://", 1)
+    return database_url
+
+
 class BaseConfig(object):
     """Base configuration."""
 
-    if os.environ.get("DATABASE_URL") is None:
-        SQLALCHEMY_DATABASE_URI = "postgresql://postgres:shihad@localhost:5432/otsukare"
-    else:
-        SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+    SQLALCHEMY_DATABASE_URI = _database_url()
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # main config
-    SECRET_KEY = "my_precious"
-    SECURITY_PASSWORD_SALT = "my_precious_two"
-    DEBUG = True
-    # BCRYPT_LOG_ROUNDS = 13
-    # WTF_CSRF_ENABLED = True
-    # DEBUG_TB_ENABLED = False
-    # DEBUG_TB_INTERCEPT_REDIRECTS = False
+    SECRET_KEY = _required_env("SECRET_KEY")
+    DEBUG = False
 
-    # mail settings
-    MAIL_SERVER = "smtp.googlemail.com"
-    MAIL_PORT = 465
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = True
-
-    # gmail authentication
-    # MAIL_USERNAME = os.environ['APP_MAIL_USERNAME']
-    # MAIL_PASSWORD = os.environ['APP_MAIL_PASSWORD']
-    MAIL_USERNAME = "otsukare.good.work@gmail.com"
-    MAIL_PASSWORD = "otsukaresamadeshita"
-
-    # mail accounts
-    MAIL_DEFAULT_SENDER = "otsukare.good.work@gmail.com"
+    SESSION_COOKIE_NAME = "otsukare_session"
+    SESSION_COOKIE_PATH = "/projects/otsukare"
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SAMESITE = "Lax"

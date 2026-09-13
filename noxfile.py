@@ -17,6 +17,7 @@ Additional options:
 
 ^ can also be run directly from CLI without nox
 """
+
 import tempfile
 from typing import Any
 
@@ -32,7 +33,13 @@ def install_with_constraints(session: Session, *args: str, **kwargs: Any) -> Non
     """Install packages constrained by Poetry's lock file."""
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
-            "poetry", "export", "--dev", "--format=requirements.txt", f"--output={requirements.name}", external=True
+            "poetry",
+            "export",
+            "--with",
+            "dev",
+            "--format=requirements.txt",
+            f"--output={requirements.name}",
+            external=True,
         )
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
@@ -43,7 +50,8 @@ def install_with_constraints_nohash(session: Session, *args: str, **kwargs: Any)
         session.run(
             "poetry",
             "export",
-            "--dev",
+            "--with",
+            "dev",
             "--format=requirements.txt",
             "--without-hashes",
             f"--output={requirements.name}",
@@ -52,7 +60,7 @@ def install_with_constraints_nohash(session: Session, *args: str, **kwargs: Any)
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def black(session: Session) -> None:
     """Run black code formatter."""
     args = session.posargs or locations
@@ -60,14 +68,14 @@ def black(session: Session) -> None:
     session.run("black", *args)
 
 
-@nox.session(python="3.8", venv_backend="conda")
+@nox.session(python="3.12", venv_backend="conda")
 def black_conda_example(session: Session) -> None:
     """Run black code formatter."""
     args = session.posargs or locations
     session.run("black", *args, external=True)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def autoflake(session: Session) -> None:
     """Run autoflake checks."""
     args = session.posargs or locations
@@ -77,7 +85,7 @@ def autoflake(session: Session) -> None:
     )
 
 
-@nox.session(python=["3.8"])
+@nox.session(python=["3.12"])
 def lint(session: Session) -> None:
     """Lint using flake8."""
     args = session.posargs or locations
@@ -97,14 +105,15 @@ def lint(session: Session) -> None:
     session.run("flake8", *args)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def safety(session: Session) -> None:
     """Scan dependencies for insecure packages."""
     with tempfile.NamedTemporaryFile() as requirements:
         session.run(
             "poetry",
             "export",
-            "--dev",
+            "--with",
+            "dev",
             "--format=requirements.txt",
             "--without-hashes",
             f"--output={requirements.name}",
@@ -114,7 +123,7 @@ def safety(session: Session) -> None:
         session.run("safety", "check", f"--file={requirements.name}", "--full-report")
 
 
-@nox.session(python=["3.8"])
+@nox.session(python=["3.12"])
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or locations
@@ -123,7 +132,7 @@ def mypy(session: Session) -> None:
     session.run("mypy", "--install-types", "--non-interactive", *args)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def pytype(session: Session) -> None:
     """Type-check using pytype."""
     args = session.posargs or ["--disable=import-error", *locations]
@@ -131,7 +140,7 @@ def pytype(session: Session) -> None:
     session.run("pytype", *args)
 
 
-@nox.session(python=["3.8"])
+@nox.session(python=["3.12"])
 def tests(session: Session) -> None:
     """Run the test suite."""
     # Updated with fix from:
@@ -142,7 +151,7 @@ def tests(session: Session) -> None:
     session.run("pytest", *args)
 
 
-@nox.session(python=["3.8"])
+@nox.session(python=["3.12"])
 def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     args = session.posargs or ["-m", "not e2e"]
@@ -151,7 +160,7 @@ def typeguard(session: Session) -> None:
     session.run("pytest", f"--typeguard-packages={package}", *args)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def coverage(session: Session) -> None:
     """Upload coverage data."""
     install_with_constraints_nohash(session, "coverage[toml]", "codecov")
@@ -159,7 +168,7 @@ def coverage(session: Session) -> None:
     session.run("codecov", *session.posargs)
 
 
-@nox.session(python=["3.8"])
+@nox.session(python=["3.12"])
 def xdoctest(session: Session) -> None:
     """Run examples with xdoctest."""
     args = session.posargs or ["all"]
@@ -168,7 +177,7 @@ def xdoctest(session: Session) -> None:
     session.run("python", "-m", "xdoctest", package, *args)
 
 
-@nox.session(python="3.8")
+@nox.session(python="3.12")
 def docs(session: Session) -> None:
     """Build the documentation."""
     session.install(".")
