@@ -113,7 +113,9 @@ poetry run python scripts/reset_users.py --yes
 ### Deploy to Railway
 
 Build this repository's `Dockerfile`, set all variables above, and configure the
-service health check as `/healthz`. The gateway must send
+service health check as `/healthz`. The container idempotently creates any missing
+database tables before Gunicorn starts; `scripts/reset_users.py --yes` remains the
+only destructive schema path. The gateway must send
 `X-Forwarded-Prefix: /projects/otsukare` and a signed `X-Gateway-Auth` header.
 
 

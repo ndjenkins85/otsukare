@@ -18,4 +18,4 @@ RUN poetry install --only-root
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "exec gunicorn --bind 0.0.0.0:$PORT --workers 2 otsukare:app"]
+CMD ["sh", "-c", "python -m otsukare.schema && exec gunicorn --bind 0.0.0.0:$PORT --workers 2 otsukare:app"]
